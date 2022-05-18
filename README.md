@@ -1,5 +1,7 @@
 # 💫About Me :
-I ' M LE VAN TRI
+👀 𝗜❜𝗠 𝗟𝗘 𝗩𝗔𝗡 𝗧𝗥𝗜 ❗❗❗
+📧 𝗹𝗲𝘃𝗮𝗻𝘁𝗿𝗶@𝗴𝗺𝗮𝗶𝗹.𝗰𝗼𝗺
+
 
 ## 🌐Socials
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/trile03x) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/trile_03) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/triiiiiiiiii) 
