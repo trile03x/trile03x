@@ -1,4 +1,4 @@
-![pincode_677580843845462886](https://user-images.githubusercontent.com/104403837/201633619-91b308b6-dfd8-4a9a-bd60-c802a24a2676.png)
+![11zon_cropped (2)](https://user-images.githubusercontent.com/104403837/201634946-a1faba40-406b-4063-a0cc-0846b39618ba.png)
 # 💫About Me :
 👀 𝗜❜𝗠 𝗟𝗘 𝗩𝗔𝗡 𝗧𝗥𝗜 ❗❗❗
 ## Contact :
@@ -29,5 +29,5 @@
 
   <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
   # Music
-  <iframe src="https://www.nhaccuatui.com/mh/background/dQ0PZ0dCBtbe" width="1" height="1" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+  https://www.nhaccuatui.com/mh/background/dQ0PZ0dCBtbe
   
