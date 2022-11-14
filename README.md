@@ -1,4 +1,3 @@
-![11zon_cropped (2)](https://user-images.githubusercontent.com/104403837/201634946-a1faba40-406b-4063-a0cc-0846b39618ba.png)
 # 💫About Me :
 👀 𝗜❜𝗠 𝗟𝗘 𝗩𝗔𝗡 𝗧𝗥𝗜 ❗❗❗
 ## Contact :
@@ -28,6 +27,3 @@
   [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/levantri6839@gmail.com) 
 
   <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
-  # Music
-  https://www.nhaccuatui.com/mh/background/dQ0PZ0dCBtbe
-  
