@@ -4,12 +4,12 @@
 ### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
 
 <!-- ============================================== -->
-<!-- CYBER SPIDER (CRAWLS AROUND FRAME BORDER)      -->
+<!-- CYBER SPIDER (PERIMETER RAIL PATROL)           -->
 <!-- Click won't open new page because of anchor    -->
 <!-- ============================================== -->
 <p align="center">
   <a href="#trile03x-profile">
-    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_perimeter.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
+    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_loop.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
   </a>
 </p>
 
