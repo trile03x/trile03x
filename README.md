@@ -4,12 +4,12 @@
 ### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
 
 <!-- ============================================== -->
-<!-- CYBER SPIDER (PERIMETER RAIL PATROL)           -->
+<!-- CYBER SPIDER (CORE LANGUAGES MATRIX)           -->
 <!-- Click won't open new page because of anchor    -->
 <!-- ============================================== -->
 <p align="center">
   <a href="#trile03x-profile">
-    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_loop.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
+    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_languages.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
   </a>
 </p>
 
