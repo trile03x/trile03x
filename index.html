@@ -199,8 +199,8 @@
     let dataScore = 0;
 
     const techWords = [
-      'Python', 'TriTechz', 'AI Chatbot', 'Duy Tan Uni', 'Bug Fixed', 
-      'Telegram Bot', 'LinkedIn', 'Da Nang', 'FullStack', 'Commit 2026'
+      'Java', 'JavaScript', 'C / C++', 'C#', 'Python', 'TriTechz', 
+      'Duy Tan Uni', 'Software Engineer', 'FullStack'
     ];
 
     let dataPackets = [];
@@ -222,13 +222,32 @@
 
     let particles = [];
     let electricBolts = [];
-    let thrusterParticles = [];
+    let shockwaves = [];
+    let dustParticles = [];
+    for (let i = 0; i < 30; i++) {
+      dustParticles.push({
+        x: Math.random() * 700,
+        y: Math.random() * 350,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.6 + 0.6,
+        alpha: Math.random() * 0.6 + 0.2
+      });
+    }
 
     function triggerHarvestFX(targetX, targetY, sourceX, sourceY) {
       electricBolts.push({
         x1: sourceX, y1: sourceY,
         x2: targetX, y2: targetY,
-        life: 16,
+        life: 18,
+        color: currentTheme.primary
+      });
+
+      shockwaves.push({
+        x: targetX, y: targetY,
+        radius: 6,
+        maxRadius: 70,
+        alpha: 0.95,
         color: currentTheme.primary
       });
 
@@ -345,20 +364,7 @@
           this.speed = Math.min(this.maxSpeed, dist * 0.08);
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
-
-          // Emit thruster flame particles
-          if (Math.random() > 0.3) {
-            const tailX = this.x - Math.cos(this.angle) * 32;
-            const tailY = this.y - Math.sin(this.angle) * 32;
-            thrusterParticles.push({
-              x: tailX, y: tailY,
-              vx: -Math.cos(this.angle) * (Math.random() * 2 + 1) + (Math.random() - 0.5) * 1,
-              vy: -Math.sin(this.angle) * (Math.random() * 2 + 1) + (Math.random() - 0.5) * 1,
-              life: 1,
-              decay: 0.05,
-              color: currentTheme.thruster
-            });
-          }
+          // Natural locomotion (no thruster flames)
         } else {
           this.speed = 0;
         }
@@ -435,6 +441,49 @@
       },
 
       draw() {
+        // 0. Draw Radar Scanner Cone & Laser Tether
+        const mouthX = this.x + Math.cos(this.angle) * 26;
+        const mouthY = this.y + Math.sin(this.angle) * 26;
+        const coneDist = 120;
+        const coneHalfAngle = 0.42;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(mouthX, mouthY);
+        ctx.arc(mouthX, mouthY, coneDist, this.angle - coneHalfAngle, this.angle + coneHalfAngle);
+        ctx.closePath();
+        const coneGrad = ctx.createRadialGradient(mouthX, mouthY, 4, mouthX, mouthY, coneDist);
+        coneGrad.addColorStop(0, currentTheme.accentGlow.replace('0.8', '0.4'));
+        coneGrad.addColorStop(0.5, currentTheme.accentGlow.replace('0.8', '0.12'));
+        coneGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = coneGrad;
+        ctx.fill();
+
+        // Laser scan sweep ray
+        const sweepAngle = this.angle + Math.sin(Date.now() * 0.005) * coneHalfAngle;
+        ctx.strokeStyle = currentTheme.secondary;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(mouthX, mouthY);
+        ctx.lineTo(mouthX + Math.cos(sweepAngle) * coneDist, mouthY + Math.sin(sweepAngle) * coneDist);
+        ctx.stroke();
+
+        // Target Laser / Web Tether (When in range)
+        const dTarget = Math.hypot(this.targetX - mouthX, this.targetY - mouthY);
+        if (dTarget < 170) {
+          ctx.strokeStyle = currentTheme.primary;
+          ctx.lineWidth = 2.4;
+          ctx.beginPath();
+          ctx.moveTo(mouthX, mouthY);
+          ctx.lineTo(this.targetX, this.targetY);
+          ctx.stroke();
+
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        ctx.restore();
+
         ctx.save();
 
         // 1. Draw Robotic Hydraulic Limbs
@@ -720,22 +769,39 @@
         ctx.globalAlpha = 1;
       }
 
-      // Thruster Flame Trail Particles
-      for (let i = thrusterParticles.length - 1; i >= 0; i--) {
-        const tp = thrusterParticles[i];
-        tp.x += tp.vx;
-        tp.y += tp.vy;
-        tp.life -= tp.decay;
-        if (tp.life <= 0) {
-          thrusterParticles.splice(i, 1);
-          continue;
-        }
-        ctx.fillStyle = tp.color;
-        ctx.globalAlpha = tp.life * 0.75;
+      // Floating Ambient Particle Dust
+      for (const dp of dustParticles) {
+        dp.x += dp.vx;
+        dp.y += dp.vy;
+        if (dp.x < 0) dp.x = displayW;
+        if (dp.x > displayW) dp.x = 0;
+        if (dp.y < 0) dp.y = displayH;
+        if (dp.y > displayH) dp.y = 0;
+        ctx.fillStyle = currentTheme.primary;
+        ctx.globalAlpha = dp.alpha;
         ctx.beginPath();
-        ctx.arc(tp.x, tp.y, 2.5 * tp.life, 0, Math.PI * 2);
+        ctx.arc(dp.x, dp.y, dp.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.globalAlpha = 1;
+      }
+
+      // Shockwave Energy Pulse Rings
+      for (let i = shockwaves.length - 1; i >= 0; i--) {
+        const sw = shockwaves[i];
+        sw.radius += 2.4;
+        sw.alpha -= 0.038;
+        if (sw.alpha <= 0) {
+          shockwaves.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.strokeStyle = sw.color;
+        ctx.globalAlpha = sw.alpha;
+        ctx.lineWidth = 2.8 * (1 - sw.radius / sw.maxRadius) + 0.5;
+        ctx.beginPath();
+        ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
       }
 
       // Floating Data Packets
@@ -765,12 +831,23 @@
         const padX = 9, boxH = 22;
         const boxW = txtW + padX * 2;
 
-        ctx.fillStyle = 'rgba(4, 9, 20, 0.92)';
-        ctx.strokeStyle = currentTheme.primary;
-        ctx.lineWidth = 1.4;
+        const isTarget = (Math.hypot(dp.x - titanBug.targetX, dp.y - titanBug.targetY) < 5);
+        ctx.fillStyle = isTarget ? 'rgba(6, 20, 36, 0.95)' : 'rgba(4, 9, 20, 0.92)';
+        ctx.strokeStyle = isTarget ? currentTheme.secondary : currentTheme.primary;
+        ctx.lineWidth = isTarget ? 2.2 : 1.4;
         ctx.strokeRect(-boxW / 2, -boxH / 2, boxW, boxH);
         ctx.fillRect(-boxW / 2, -boxH / 2, boxW, boxH);
 
+        // Breathing LED Status dot
+        const ledAlpha = 0.5 + Math.sin(Date.now() * 0.006) * 0.45;
+        ctx.fillStyle = currentTheme.secondary;
+        ctx.globalAlpha = ledAlpha;
+        ctx.beginPath();
+        ctx.arc(-boxW / 2 + 7, 0, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = dp.dissolving ? (1 - dp.dissolveRatio) : 0.95;
+
+        // Tech corners
         ctx.fillStyle = currentTheme.secondary;
         ctx.fillRect(-boxW / 2, -boxH / 2, 3, 3);
         ctx.fillRect(boxW / 2 - 3, -boxH / 2, 3, 3);
@@ -780,7 +857,13 @@
         ctx.fillStyle = currentTheme.primary;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(dp.text, 0, 1);
+        ctx.fillText(dp.text, 5, 1);
+
+        if (isTarget) {
+          ctx.font = '8px monospace';
+          ctx.fillStyle = currentTheme.secondary;
+          ctx.fillText('[SYNC: 100% | 8ms]', 0, boxH / 2 + 8);
+        }
 
         ctx.restore();
       }
