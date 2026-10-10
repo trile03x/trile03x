@@ -1,4 +1,5 @@
-# <div align="center">
+<div align="center">
+
 # 👾 HI THERE, I'M LE VAN TRI (@trile03x) 👾
 ### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
 
@@ -6,7 +7,7 @@
 <!-- CYBER BUG ANIMATED BANNER                      -->
 <!-- ============================================== -->
 <p align="center">
-  <img src="./cyber_bug_banner.svg" alt="Cyber Bug Data Harvester" width="100%" />
+  <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_bug_banner.svg" alt="Cyber Bug Data Harvester" width="100%" />
 </p>
 
 > *"Once you choose hope, anything's possible."*
