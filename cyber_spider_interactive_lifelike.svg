@@ -19,7 +19,7 @@
     <radialGradient id="arcCoreGlow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="35%" stop-color="#00f3ff"/>
-      <stop offset="70%" stop-color="#0066cc" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#0284c7" stop-opacity="0.8"/>
       <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
     </radialGradient>
 
@@ -32,7 +32,7 @@
 
     <!-- Radar Field Cone -->
     <linearGradient id="radarFieldCone" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.85"/>
       <stop offset="50%" stop-color="#00ff88" stop-opacity="0.25"/>
       <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
     </linearGradient>
@@ -63,6 +63,15 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+
+    <!-- Red Error Glow Filter -->
+    <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="redBlur"/>
+      <feMerge>
+        <feMergeNode in="redBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
 
   <style>
@@ -77,14 +86,14 @@
       50%      { transform: rotate(-22deg); }
     }
 
-    /* Chelicerae Fangs Tapping / Reaching */
-    @keyframes fangTapL {
+    /* Chelicerae Fangs Tapping / Eating Bug */
+    @keyframes fangChompL {
       0%, 100% { transform: rotate(-4deg); }
-      50%      { transform: rotate(26deg); }
+      50%      { transform: rotate(32deg); }
     }
-    @keyframes fangTapR {
+    @keyframes fangChompR {
       0%, 100% { transform: rotate(4deg); }
-      50%      { transform: rotate(-26deg); }
+      50%      { transform: rotate(-32deg); }
     }
 
     /* Arc Reactor Pulse */
@@ -133,16 +142,16 @@
       50%      { opacity: 1; }
     }
 
-    /* Box Flaring / Reaction when spider passes */
-    @keyframes boxGlowWave {
+    /* Box Reaction when bug is eaten */
+    @keyframes boxDebuggedWave {
       0%, 100% { filter: drop-shadow(0 0 2px currentColor); }
-      50%      { filter: drop-shadow(0 0 10px currentColor); }
+      50%      { filter: drop-shadow(0 0 14px currentColor); }
     }
 
-    .sp-leg-a       { animation: legGaitGroupA 0.32s ease-in-out infinite alternate; transform-origin: 0 0; }
-    .sp-leg-b       { animation: legGaitGroupB 0.32s ease-in-out infinite alternate; transform-origin: 0 0; }
-    .fang-l         { animation: fangTapL 0.8s ease-in-out infinite alternate; transform-origin: 22px -10px; }
-    .fang-r         { animation: fangTapR 0.8s ease-in-out infinite alternate; transform-origin: 22px 10px; }
+    .sp-leg-a       { animation: legGaitGroupA 0.3s ease-in-out infinite alternate; transform-origin: 0 0; }
+    .sp-leg-b       { animation: legGaitGroupB 0.3s ease-in-out infinite alternate; transform-origin: 0 0; }
+    .fang-l         { animation: fangChompL 0.6s ease-in-out infinite alternate; transform-origin: 22px -10px; }
+    .fang-r         { animation: fangChompR 0.6s ease-in-out infinite alternate; transform-origin: 22px 10px; }
     .core-pulse     { animation: pulseArcCore 1.2s ease-in-out infinite; transform-origin: -14px 0px; }
     .radar-sweep    { animation: radarSweepBio 2.2s ease-in-out infinite; transform-origin: 30px 0px; }
     .data-flow-fwd  { animation: dataPulseFlowFwd 2.4s linear infinite; stroke-dasharray: 8 32; }
@@ -151,7 +160,7 @@
     .dust-float-b   { animation: dustFloatB 5.5s ease-in-out infinite; }
     .hud-glitch     { animation: hudGlitchAnim 6s infinite; }
     .led-dot        { animation: ledBreathe 1.8s ease-in-out infinite; }
-    .box-wave       { animation: boxGlowWave 3.5s ease-in-out infinite; }
+    .box-wave       { animation: boxDebuggedWave 3.5s ease-in-out infinite; }
     /* ]]> */
   </style>
 
@@ -185,10 +194,10 @@
 
   <!-- HUD Header & Footer -->
   <g font-family="'Courier New', monospace" font-size="11" fill="#00f3ff">
-    <text x="32" y="24" font-weight="bold" class="hud-glitch">◈ BIO_ARACHNID // NEURAL_MATRIX_MK8 ◈</text>
-    <text x="660" y="24" font-weight="bold" opacity="0.8">SYS: ONLINE // TETHER: READY ◈</text>
-    <text x="32" y="304" font-size="9.5" fill="#64748b">[TARGET_LOCK: ACTIVE] // PROTOCOL: ZIGZAG_ORBIT</text>
-    <text x="735" y="304" font-size="9.5" fill="#00ff88">TRILE03X // APEX_SENTINEL ◈</text>
+    <text x="32" y="24" font-weight="bold" class="hud-glitch">◈ BIO_ARACHNID // NEURAL_BUG_HUNTER_MK8 ◈</text>
+    <text x="610" y="24" font-weight="bold" fill="#00ff88">BUG_RADAR: ACTIVE // ELIMINATING ◈</text>
+    <text x="32" y="304" font-size="9.5" fill="#ff0055">[AUTO_DEBUG: ON] // TRACKING ERROR PARTICLES</text>
+    <text x="735" y="304" font-size="9.5" fill="#00ff88">TRILE03X // ZERO_BUGS ◈</text>
   </g>
 
   <!-- ======================================================== -->
@@ -223,7 +232,6 @@
     <line x1="280" y1="125" x2="280" y2="195"/>
     <line x1="460" y1="125" x2="460" y2="195"/>
     <line x1="640" y1="125" x2="640" y2="195"/>
-    <!-- Diagonal Bio Web Strands -->
     <line x1="280" y1="125" x2="460" y2="195"/>
     <line x1="280" y1="195" x2="460" y2="125"/>
     <line x1="460" y1="125" x2="640" y2="195"/>
@@ -303,20 +311,58 @@
     </g>
   </g>
 
-  <!-- ======================================================= -->
-  <!-- CON NHỆN CƠ KHÍ BÒ ZIC-ZAC 100% TRONG KHUÔN HÌNH       -->
-  <!-- Sử dụng SVG animateMotion bản địa chuẩn 100%           -->
-  <!-- ======================================================= -->
+  <!-- ======================================================== -->
+  <!-- CHẤM ĐỎ LỖI HỆ THỐNG (RED BUG / 0xERROR)                  -->
+  <!-- Xuất hiện ngẫu nhiên, phát tín hiệu và bị con bọ ăn      -->
+  <!-- ======================================================== -->
   <g>
-    <!-- Quỹ đạo Bò Zic-Zac liên tục qua các ô mã nguồn, an toàn tuyệt đối trong khung (X: 180-745, Y: 85-235) -->
+    <!-- Di chuyển chấm đỏ qua các vị trí lỗi cần sửa -->
+    <animateTransform attributeName="transform" type="translate"
+      values="250 175; 250 175; 310 110; 310 110; 460 95; 460 95; 660 215; 660 215; 250 175"
+      keyTimes="0; 0.16; 0.20; 0.38; 0.42; 0.58; 0.62; 0.82; 1"
+      dur="24s" repeatCount="indefinite"/>
+
+    <!-- Độ ẩn hiện của Chấm Đỏ: Nhấp nháy cảnh báo, khi con bọ tới ăn thì biến mất -->
+    <g>
+      <animate attributeName="opacity"
+        values="1; 1; 0; 0; 1; 1; 0; 0; 1; 1; 0; 0; 1; 1; 0; 0; 1"
+        keyTimes="0; 0.13; 0.16; 0.20; 0.22; 0.35; 0.38; 0.42; 0.44; 0.55; 0.58; 0.62; 0.64; 0.79; 0.82; 0.98; 1"
+        dur="24s" repeatCount="indefinite"/>
+
+      <!-- Quầng sáng nguy hiểm đỏ rực xung quanh chấm đỏ -->
+      <circle cx="0" cy="0" r="14" fill="#ff0055" opacity="0.3">
+        <animate attributeName="r" values="8; 20; 8" dur="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.6; 0.1; 0.6" dur="0.8s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Tâm chấm đỏ Error Core -->
+      <circle cx="0" cy="0" r="6" fill="#ff0055" filter="url(#redGlow)"/>
+      <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
+
+      <!-- Hồng tâm cảnh báo mục tiêu -->
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="#ff0055" stroke-width="1.2"/>
+      <line x1="0" y1="-10" x2="0" y2="10" stroke="#ff0055" stroke-width="1.2"/>
+      <circle cx="0" cy="0" r="9" fill="none" stroke="#ff0055" stroke-width="1" stroke-dasharray="2,2"/>
+
+      <!-- Nhãn mã lỗi phát sáng -->
+      <text x="12" y="3.5" font-family="'Courier New', monospace" font-size="8.5" fill="#ff0055" font-weight="bold">! 0xBUG</text>
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- CON NHỆN CƠ KHÍ ĐUỔI THEO ĂN BUG VÀ TƯƠNG TÁC Ô MÃ NGUỒN -->
+  <!-- 100% trong khung hình, chuyển động chuẩn SVG bản địa     -->
+  <!-- ======================================================== -->
+  <g>
+    <!-- Quỹ đạo săn bug zic-zac: Bọ đuổi theo chấm đỏ tại Python -> Java -> TriTechz -> C# và lượn về -->
     <animateMotion 
-      path="M 180,210 C 200,160 250,90 280,95 C 310,100 370,225 400,230 C 430,235 490,90 520,95 C 550,100 610,225 640,230 C 680,235 745,170 745,130 C 745,95 670,85 640,95 C 610,105 550,225 520,230 C 490,235 430,90 400,95 C 370,100 310,225 280,230 C 250,235 180,250 180,210 Z" 
-      dur="18s" 
+      path="M 180,220 C 190,210 220,180 250,175 C 265,170 285,120 310,110 C 340,105 410,95 460,95 C 520,95 620,170 660,215 C 690,225 735,170 735,130 C 735,95 600,95 530,130 C 470,160 460,230 400,230 C 330,230 200,240 180,220 Z" 
+      dur="24s" 
       repeatCount="indefinite" 
       rotate="auto"
     />
 
-    <!-- Nón quét Radar Laser (Scanner Cone) hướng về phía trước -->
+    <!-- Nón quét Radar Laser (Scanner Cone) khóa mục tiêu vào hướng đuổi theo bug -->
     <g class="radar-sweep">
       <polygon points="30,-2 140,-50 155,45" fill="url(#radarFieldCone)" opacity="0.45"/>
       <line x1="30" y1="0" x2="145" y2="0" stroke="#00f3ff" stroke-width="1.6" stroke-dasharray="5,3" opacity="0.95"/>
@@ -324,7 +370,7 @@
       <circle cx="125" cy="0" r="2.2" fill="#00ff88"/>
     </g>
 
-    <!-- Sợi tơ Laser Tether kép và tia sét hồ quang -->
+    <!-- Sợi tơ Laser Tether và tia sét giật khi ăn bug -->
     <g filter="url(#superBloom)">
       <line x1="24" y1="-7" x2="65" y2="-12" stroke="#00f3ff" stroke-width="2.5" stroke-linecap="round"/>
       <line x1="24" y1="-7" x2="65" y2="-12" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
@@ -455,7 +501,7 @@
     <circle cx="7" cy="-9" r="1.4" fill="#00ff88"/>
     <circle cx="7" cy="9" r="1.4" fill="#00ff88"/>
 
-    <!-- Kìm Càng Chelicerae gõ nhịp -->
+    <!-- Kìm Càng Chelicerae chomp ăn bug -->
     <g class="fang-l">
       <path d="M 18 -6 L 28 -12 L 32 -4" stroke="#00f3ff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
       <circle cx="32" cy="-4" r="1.8" fill="#00ff88"/>
