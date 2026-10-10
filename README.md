@@ -1,13 +1,16 @@
-<div align="center">
+<div align="center" id="trile03x-profile">
 
 # 👾 HI THERE, I'M LE VAN TRI (@trile03x) 👾
 ### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
 
 <!-- ============================================== -->
-<!-- CYBER STEALTH BUG (HUNTING & HARVESTING TEXT) -->
+<!-- CYBER SPIDER (CRAWLS AROUND FRAME BORDER)      -->
+<!-- Click won't open new page because of anchor    -->
 <!-- ============================================== -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_stealth_bug.svg" alt="Cyber Stealth Bug Sentinel" width="100%" />
+  <a href="#trile03x-profile">
+    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_perimeter.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
+  </a>
 </p>
 
 > *"Once you choose hope, anything's possible."*
