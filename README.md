@@ -1,7 +1,7 @@
 <div align="center" id="trile03x-profile">
 
 # 👾 HI THERE, I'M LE VAN TRI (@trile03x) 👾
-### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
+### 🚀 Software Engineer | Java • JavaScript • C / C++ • C# • Python | Duy Tan University
 
 <!-- ============================================== -->
 <!-- CYBER SPIDER (LIFELIKE INTERACTIVE MATRIX)     -->
@@ -9,7 +9,7 @@
 <!-- ============================================== -->
 <p align="center">
   <a href="#trile03x-profile">
-    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_organic.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
+    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_interactive_lifelike.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
   </a>
 </p>
 
