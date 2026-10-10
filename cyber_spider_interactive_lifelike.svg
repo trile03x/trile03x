@@ -1,49 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" width="920" height="320">
   <defs>
-    <!-- Background Void Gradient -->
-    <linearGradient id="cyberSpaceBg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Background Space Void Gradient -->
+    <linearGradient id="bgCyberSpace" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#020409"/>
-      <stop offset="50%" stop-color="#060f22"/>
+      <stop offset="50%" stop-color="#050e20"/>
       <stop offset="100%" stop-color="#020308"/>
     </linearGradient>
 
-    <!-- Titanium Chitin Armor Plating -->
-    <linearGradient id="stealthChitin" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#3b4b60"/>
-      <stop offset="30%" stop-color="#1e293b"/>
-      <stop offset="75%" stop-color="#0f172a"/>
+    <!-- Metallic Carbon Armor Plating -->
+    <linearGradient id="armorPlates" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="35%" stop-color="#1e293b"/>
+      <stop offset="80%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#020617"/>
     </linearGradient>
 
-    <!-- Leg Carbon Fiber Gradient -->
-    <linearGradient id="carbonLeg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#475569"/>
-      <stop offset="50%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#090d16"/>
-    </linearGradient>
-
-    <!-- Arc Reactor Core Radial Glow -->
-    <radialGradient id="arcReactorCore" cx="50%" cy="50%" r="50%">
+    <!-- Core Arc Reactor Glow -->
+    <radialGradient id="arcCoreGlow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#00f3ff"/>
-      <stop offset="70%" stop-color="#0284c7" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="#00f3ff"/>
+      <stop offset="70%" stop-color="#0066cc" stop-opacity="0.8"/>
       <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Radar Scanner Cone Gradient -->
-    <linearGradient id="radarScanCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.9"/>
-      <stop offset="35%" stop-color="#00f3ff" stop-opacity="0.3"/>
+    <!-- Predator Eye Laser Lens -->
+    <radialGradient id="opticLaserLens" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Radar Field Cone -->
+    <linearGradient id="radarFieldCone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#00ff88" stop-opacity="0.25"/>
       <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- Multi-stage Bloom & Glow Filters -->
-    <filter id="superBloom" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2" result="blur1"/>
-      <feGaussianBlur stdDeviation="6" result="blur2"/>
-      <feGaussianBlur stdDeviation="12" result="blur3"/>
+    <!-- Circuit Trace Gradient -->
+    <linearGradient id="circuitNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#00f3ff" stop-opacity="0.9"/>
+      <stop offset="80%" stop-color="#00ff88" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Multi-stage Bloom Filter -->
+    <filter id="superBloom" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur1"/>
+      <feGaussianBlur stdDeviation="7" result="blur2"/>
       <feMerge>
-        <feMergeNode in="blur3"/>
         <feMergeNode in="blur2"/>
         <feMergeNode in="blur1"/>
         <feMergeNode in="SourceGraphic"/>
@@ -51,17 +57,9 @@
     </filter>
 
     <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3.5" result="glow"/>
+      <feGaussianBlur stdDeviation="3" result="glow"/>
       <feMerge>
         <feMergeNode in="glow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <filter id="cyanSparkGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
@@ -69,17 +67,50 @@
 
   <style>
     /* <![CDATA[ */
-    /* Data streams flowing on connecting circuit lines */
-    @keyframes dataPulseFlowForward {
+    /* 8-Leg Bio-Mechanical Tetrapod Stepping */
+    @keyframes legGaitGroupA {
+      0%, 100% { transform: rotate(-22deg); }
+      50%      { transform: rotate(24deg); }
+    }
+    @keyframes legGaitGroupB {
+      0%, 100% { transform: rotate(24deg); }
+      50%      { transform: rotate(-22deg); }
+    }
+
+    /* Chelicerae Fangs Tapping / Reaching */
+    @keyframes fangTapL {
+      0%, 100% { transform: rotate(-4deg); }
+      50%      { transform: rotate(26deg); }
+    }
+    @keyframes fangTapR {
+      0%, 100% { transform: rotate(4deg); }
+      50%      { transform: rotate(-26deg); }
+    }
+
+    /* Arc Reactor Pulse */
+    @keyframes pulseArcCore {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50%      { transform: scale(1.35); opacity: 0.7; }
+    }
+
+    /* Radar Laser Sweep */
+    @keyframes radarSweepBio {
+      0%   { transform: rotate(-26deg); opacity: 0.3; }
+      50%  { transform: rotate(30deg); opacity: 0.95; }
+      100% { transform: rotate(-26deg); opacity: 0.3; }
+    }
+
+    /* Data stream pulse on connecting web */
+    @keyframes dataPulseFlowFwd {
       0%   { stroke-dashoffset: 160; }
       100% { stroke-dashoffset: 0; }
     }
-    @keyframes dataPulseFlowReverse {
+    @keyframes dataPulseFlowRev {
       0%   { stroke-dashoffset: 0; }
       100% { stroke-dashoffset: 160; }
     }
 
-    /* Floating Ambient Particle Dust */
+    /* Floating Ambient Dust */
     @keyframes dustFloatA {
       0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
       50%      { transform: translateY(-16px) translateX(10px); opacity: 0.85; }
@@ -89,65 +120,76 @@
       50%      { transform: translateY(14px) translateX(-8px); opacity: 0.15; }
     }
 
-    /* Sci-Fi HUD Corner Glitch Effect */
-    @keyframes hudGlitchFlicker {
+    /* HUD Corner Glitch */
+    @keyframes hudGlitchAnim {
       0%, 94%, 98%, 100% { transform: translate(0,0) skew(0deg); opacity: 0.85; }
       95%                { transform: translate(-3px, 1px) skew(-6deg); opacity: 1; text-shadow: 2px 0 #ff0055, -2px 0 #00f3ff; }
       97%                { transform: translate(2px, -1px) skew(4deg); opacity: 0.9; text-shadow: -2px 0 #ff0055, 2px 0 #00ff88; }
     }
 
-    /* Radar Cone Sweep inside spider */
-    @keyframes radarConeSweep {
-      0%   { transform: rotate(-26deg); opacity: 0.35; }
-      50%  { transform: rotate(28deg); opacity: 0.95; }
-      100% { transform: rotate(-26deg); opacity: 0.35; }
-    }
-
-    /* Reactor Core Pulse */
-    @keyframes reactorOverdrive {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50%      { transform: scale(1.35); opacity: 1; }
-    }
-
     /* Breathing Status LEDs */
-    @keyframes ledBreathing {
-      0%, 100% { opacity: 0.45; filter: drop-shadow(0 0 1px currentColor); }
-      50%      { opacity: 1; filter: drop-shadow(0 0 8px currentColor); }
+    @keyframes ledBreathe {
+      0%, 100% { opacity: 0.45; }
+      50%      { opacity: 1; }
     }
 
-    .data-flow-fwd  { animation: dataPulseFlowForward 2.4s linear infinite; stroke-dasharray: 8 32; }
-    .data-flow-rev  { animation: dataPulseFlowReverse 2.4s linear infinite; stroke-dasharray: 8 32; }
+    /* Box Flaring / Reaction when spider passes */
+    @keyframes boxGlowWave {
+      0%, 100% { filter: drop-shadow(0 0 2px currentColor); }
+      50%      { filter: drop-shadow(0 0 10px currentColor); }
+    }
+
+    .sp-leg-a       { animation: legGaitGroupA 0.32s ease-in-out infinite alternate; transform-origin: 0 0; }
+    .sp-leg-b       { animation: legGaitGroupB 0.32s ease-in-out infinite alternate; transform-origin: 0 0; }
+    .fang-l         { animation: fangTapL 0.8s ease-in-out infinite alternate; transform-origin: 22px -10px; }
+    .fang-r         { animation: fangTapR 0.8s ease-in-out infinite alternate; transform-origin: 22px 10px; }
+    .core-pulse     { animation: pulseArcCore 1.2s ease-in-out infinite; transform-origin: -14px 0px; }
+    .radar-sweep    { animation: radarSweepBio 2.2s ease-in-out infinite; transform-origin: 30px 0px; }
+    .data-flow-fwd  { animation: dataPulseFlowFwd 2.4s linear infinite; stroke-dasharray: 8 32; }
+    .data-flow-rev  { animation: dataPulseFlowRev 2.4s linear infinite; stroke-dasharray: 8 32; }
     .dust-float-a   { animation: dustFloatA 4.5s ease-in-out infinite; }
     .dust-float-b   { animation: dustFloatB 5.5s ease-in-out infinite; }
-    .hud-glitch     { animation: hudGlitchFlicker 6s infinite; }
-    .radar-cone-rot { animation: radarConeSweep 2s ease-in-out infinite; transform-origin: 26px 0px; }
-    .reactor-pulse  { animation: reactorOverdrive 1.2s ease-in-out infinite; transform-origin: -14px 0px; }
-    .led-breathe    { animation: ledBreathing 1.8s ease-in-out infinite; }
+    .hud-glitch     { animation: hudGlitchAnim 6s infinite; }
+    .led-dot        { animation: ledBreathe 1.8s ease-in-out infinite; }
+    .box-wave       { animation: boxGlowWave 3.5s ease-in-out infinite; }
     /* ]]> */
   </style>
 
   <!-- ======================================================== -->
   <!-- BACKGROUND DECK & MATRIX GRID                            -->
   <!-- ======================================================== -->
-  <rect width="920" height="320" rx="16" fill="url(#cyberSpaceBg)" stroke="#00f3ff" stroke-opacity="0.5" stroke-width="1.8"/>
+  <rect width="920" height="320" rx="16" fill="url(#bgCyberSpace)" stroke="#00f3ff" stroke-opacity="0.5" stroke-width="1.8"/>
 
   <g opacity="0.07" stroke="#00f3ff" stroke-width="1">
     <line x1="0" y1="40" x2="920" y2="40"/><line x1="0" y1="80" x2="920" y2="80"/>
     <line x1="0" y1="120" x2="920" y2="120"/><line x1="0" y1="160" x2="920" y2="160"/>
     <line x1="0" y1="200" x2="920" y2="200"/><line x1="0" y1="240" x2="920" y2="240"/>
     <line x1="0" y1="280" x2="920" y2="280"/>
-    <line x1="80" y1="0" x2="80" y2="320"/><line x1="160" y1="0" x2="160" y2="320"/>
-    <line x1="240" y1="0" x2="240" y2="320"/><line x1="320" y1="0" x2="320" y2="320"/>
-    <line x1="400" y1="0" x2="400" y2="320"/><line x1="480" y1="0" x2="480" y2="320"/>
-    <line x1="560" y1="0" x2="560" y2="320"/><line x1="640" y1="0" x2="640" y2="320"/>
-    <line x1="720" y1="0" x2="720" y2="320"/><line x1="800" y1="0" x2="800" y2="320"/>
+    <line x1="100" y1="0" x2="100" y2="320"/><line x1="200" y1="0" x2="200" y2="320"/>
+    <line x1="300" y1="0" x2="300" y2="320"/><line x1="400" y1="0" x2="400" y2="320"/>
+    <line x1="500" y1="0" x2="500" y2="320"/><line x1="600" y1="0" x2="600" y2="320"/>
+    <line x1="700" y1="0" x2="700" y2="320"/><line x1="800" y1="0" x2="800" y2="320"/>
   </g>
 
-  <!-- Sci-Fi Corner Bracket Accents -->
+  <!-- Cyber Traces -->
+  <path d="M 25 35 L 180 35 L 210 65 L 420 65" stroke="url(#circuitNeon)" stroke-width="1.6" fill="none"/>
+  <circle cx="420" cy="65" r="3" fill="#00f3ff"/>
+  <path d="M 895 285 L 740 285 L 710 255 L 500 255" stroke="url(#circuitNeon)" stroke-width="1.6" fill="none"/>
+  <circle cx="500" cy="255" r="3" fill="#00ff88"/>
+
+  <!-- Sci-Fi Corner Brackets -->
   <path d="M 12 28 L 28 12 L 56 12" stroke="#00f3ff" stroke-width="1.6" fill="none" opacity="0.8"/>
   <path d="M 908 28 L 892 12 L 864 12" stroke="#00f3ff" stroke-width="1.6" fill="none" opacity="0.8"/>
   <path d="M 12 292 L 28 308 L 56 308" stroke="#00f3ff" stroke-width="1.6" fill="none" opacity="0.8"/>
   <path d="M 908 292 L 892 308 L 864 308" stroke="#00f3ff" stroke-width="1.6" fill="none" opacity="0.8"/>
+
+  <!-- HUD Header & Footer -->
+  <g font-family="'Courier New', monospace" font-size="11" fill="#00f3ff">
+    <text x="32" y="24" font-weight="bold" class="hud-glitch">◈ BIO_ARACHNID // NEURAL_MATRIX_MK8 ◈</text>
+    <text x="660" y="24" font-weight="bold" opacity="0.8">SYS: ONLINE // TETHER: READY ◈</text>
+    <text x="32" y="304" font-size="9.5" fill="#64748b">[TARGET_LOCK: ACTIVE] // PROTOCOL: ZIGZAG_ORBIT</text>
+    <text x="735" y="304" font-size="9.5" fill="#00ff88">TRILE03X // APEX_SENTINEL ◈</text>
+  </g>
 
   <!-- ======================================================== -->
   <!-- FLOATING ENERGY PARTICLE DUST                            -->
@@ -168,358 +210,260 @@
     <circle cx="530" cy="190" r="1.2" fill="#38bdf8"/>
     <circle cx="720" cy="150" r="1.6" fill="#c084fc"/>
     <circle cx="860" cy="120" r="1.4" fill="#00ff88"/>
-    <circle cx="60" cy="120" r="1.2" fill="#00f3ff"/>
   </g>
 
   <!-- ======================================================== -->
   <!-- DATA FLOW HIGHWAYS: INTERCONNECTING NEURAL WEB           -->
   <!-- ======================================================== -->
   <g stroke="#00f3ff" stroke-width="1.2" stroke-opacity="0.18">
-    <line x1="240" y1="130" x2="460" y2="130"/>
-    <line x1="460" y1="130" x2="680" y2="130"/>
-    <line x1="240" y1="210" x2="460" y2="230"/>
-    <line x1="460" y1="230" x2="680" y2="210"/>
-    <line x1="240" y1="130" x2="240" y2="210"/>
-    <line x1="680" y1="130" x2="680" y2="210"/>
-    <line x1="460" y1="130" x2="460" y2="230"/>
-    <line x1="240" y1="210" x2="460" y2="130"/>
-    <line x1="240" y1="130" x2="460" y2="230"/>
-    <line x1="460" y1="130" x2="680" y2="210"/>
-    <line x1="460" y1="230" x2="680" y2="130"/>
+    <line x1="280" y1="125" x2="460" y2="125"/>
+    <line x1="460" y1="125" x2="640" y2="125"/>
+    <line x1="280" y1="195" x2="460" y2="195"/>
+    <line x1="460" y1="195" x2="640" y2="195"/>
+    <line x1="280" y1="125" x2="280" y2="195"/>
+    <line x1="460" y1="125" x2="460" y2="195"/>
+    <line x1="640" y1="125" x2="640" y2="195"/>
+    <!-- Diagonal Bio Web Strands -->
+    <line x1="280" y1="125" x2="460" y2="195"/>
+    <line x1="280" y1="195" x2="460" y2="125"/>
+    <line x1="460" y1="125" x2="640" y2="195"/>
+    <line x1="460" y1="195" x2="640" y2="125"/>
   </g>
 
   <!-- Dynamic Glowing Data Packet Pulses -->
-  <g filter="url(#cyanSparkGlow)">
-    <line x1="240" y1="130" x2="460" y2="130" stroke="#00f3ff" stroke-width="2.2" class="data-flow-fwd"/>
-    <line x1="460" y1="130" x2="680" y2="130" stroke="#38bdf8" stroke-width="2.2" class="data-flow-fwd"/>
-    <line x1="240" y1="210" x2="460" y2="230" stroke="#facc15" stroke-width="2.2" class="data-flow-fwd"/>
-    <line x1="460" y1="230" x2="680" y2="210" stroke="#c084fc" stroke-width="2.2" class="data-flow-fwd"/>
-    <line x1="240" y1="210" x2="460" y2="130" stroke="#00ff88" stroke-width="2.2" class="data-flow-rev"/>
-    <line x1="460" y1="130" x2="680" y2="210" stroke="#c084fc" stroke-width="2.2" class="data-flow-fwd"/>
-    <line x1="460" y1="130" x2="460" y2="230" stroke="#00ff88" stroke-width="2.4" class="data-flow-fwd"/>
-    <line x1="240" y1="130" x2="240" y2="210" stroke="#fb923c" stroke-width="2" class="data-flow-rev"/>
-    <line x1="680" y1="130" x2="680" y2="210" stroke="#38bdf8" stroke-width="2.2" class="data-flow-fwd"/>
-  </g>
-
-  <!-- HUD Header & Footer -->
-  <g font-family="'Courier New', monospace" font-size="11" fill="#00f3ff">
-    <text x="32" y="24" font-weight="bold" class="hud-glitch">◈ BIO_ARACHNID // NEURAL_MATRIX_MK8 ◈</text>
-    <text x="660" y="24" font-weight="bold" opacity="0.8">SYS: ONLINE // TETHER: READY ◈</text>
-    <text x="32" y="304" font-size="9.5" fill="#64748b">[TARGET_LOCK: ACTIVE] // PROTOCOL: AUTONOMOUS_IK</text>
-    <text x="735" y="304" font-size="9.5" fill="#00ff88">TRILE03X // APEX_SENTINEL ◈</text>
+  <g filter="url(#superBloom)">
+    <line x1="280" y1="125" x2="460" y2="125" stroke="#fb923c" stroke-width="2.2" class="data-flow-fwd"/>
+    <line x1="460" y1="125" x2="640" y2="125" stroke="#38bdf8" stroke-width="2.2" class="data-flow-fwd"/>
+    <line x1="280" y1="195" x2="460" y2="195" stroke="#00f3ff" stroke-width="2.2" class="data-flow-fwd"/>
+    <line x1="460" y1="195" x2="640" y2="195" stroke="#c084fc" stroke-width="2.2" class="data-flow-fwd"/>
+    <line x1="280" y1="195" x2="460" y2="125" stroke="#00ff88" stroke-width="2.2" class="data-flow-rev"/>
+    <line x1="460" y1="125" x2="640" y2="195" stroke="#c084fc" stroke-width="2.2" class="data-flow-fwd"/>
+    <line x1="460" y1="125" x2="460" y2="195" stroke="#00ff88" stroke-width="2.4" class="data-flow-fwd"/>
+    <line x1="280" y1="125" x2="280" y2="195" stroke="#fb923c" stroke-width="2" class="data-flow-rev"/>
+    <line x1="640" y1="125" x2="640" y2="195" stroke="#38bdf8" stroke-width="2.2" class="data-flow-fwd"/>
   </g>
 
   <!-- ======================================================== -->
-  <!-- 6 INTERACTIVE DATA CARDS & SHOCKWAVES                    -->
+  <!-- 6 INTERACTIVE DATA CARDS (TOP & BOTTOM ROWS)             -->
   <!-- ======================================================== -->
 
-  <!-- [NODE 1: PYTHON @ (240, 210)] - Spider visits at 0% - 8% -->
-  <circle cx="240" cy="210" r="8" fill="none" stroke="#00f3ff" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 75; 8" keyTimes="0; 0.08; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.95; 0; 0" keyTimes="0; 0.08; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(240, 210)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="240 210; 240 188; 240 188; 240 210; 240 210" 
-      keyTimes="0; 0.03; 0.06; 0.08; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-60" y="-15" width="120" height="30" rx="6" fill="#041224" stroke="#00f3ff" stroke-width="1.8"/>
-    <circle cx="-46" cy="0" r="3.5" fill="#00f3ff" class="led-breathe" style="color: #00f3ff;"/>
-    <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#00f3ff" text-anchor="middle" font-weight="bold">&lt;Python/&gt;</text>
-    <!-- Telemetry Readout Tag -->
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="1; 1; 0; 0" keyTimes="0; 0.08; 0.12; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-70" y="-6" width="140" height="15" rx="3" fill="#020813" stroke="#00f3ff" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#00f3ff" text-anchor="middle" font-weight="bold">[SYNC: 100% | LAT: 8ms]</text>
+  <!-- [ROW 1 - TOP] -->
+  <!-- 1. Java (Orange) -->
+  <g transform="translate(280, 125)">
+    <g class="box-wave" style="color: #fb923c;">
+      <rect x="-58" y="-14" width="116" height="28" rx="6" fill="#240f04" stroke="#f97316" stroke-width="1.8"/>
+      <circle cx="-44" cy="0" r="3.5" fill="#f97316" class="led-dot"/>
+      <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#fb923c" text-anchor="middle" font-weight="bold">&lt;Java/&gt;</text>
     </g>
   </g>
 
-  <!-- [NODE 2: JAVA @ (240, 130)] - Spider visits at 16% - 25% -->
-  <circle cx="240" cy="130" r="8" fill="none" stroke="#fb923c" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 8; 75; 8" keyTimes="0; 0.16; 0.25; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0; 0.95; 0; 0" keyTimes="0; 0.16; 0.25; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(240, 130)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="240 130; 240 130; 240 108; 240 108; 240 130; 240 130" 
-      keyTimes="0; 0.16; 0.19; 0.22; 0.25; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-60" y="-15" width="120" height="30" rx="6" fill="#240c03" stroke="#fb923c" stroke-width="1.8"/>
-    <circle cx="-46" cy="0" r="3.5" fill="#fb923c" class="led-breathe" style="color: #fb923c;"/>
-    <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#fb923c" text-anchor="middle" font-weight="bold">&lt;Java/&gt;</text>
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="0; 0; 1; 1; 0; 0" keyTimes="0; 0.15; 0.16; 0.25; 0.28; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-70" y="-6" width="140" height="15" rx="3" fill="#140601" stroke="#fb923c" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#fb923c" text-anchor="middle" font-weight="bold">[JVM_OPTIMIZED | LAT: 9ms]</text>
+  <!-- 2. TriTechz (Emerald Center Brand) -->
+  <g transform="translate(460, 125)">
+    <g class="box-wave" style="color: #00ff88;">
+      <rect x="-64" y="-15" width="128" height="30" rx="7" fill="#042616" stroke="#00ff88" stroke-width="2"/>
+      <circle cx="-50" cy="0" r="4" fill="#00ff88" class="led-dot"/>
+      <text x="6" y="5" font-family="'Courier New', monospace" font-size="13" fill="#00ff88" text-anchor="middle" font-weight="bold">[TriTechz]</text>
     </g>
   </g>
 
-  <!-- [NODE 3: TRITECHZ @ (460, 130)] - Spider visits at 33% - 42% -->
-  <circle cx="460" cy="130" r="10" fill="none" stroke="#00ff88" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 8; 85; 8" keyTimes="0; 0.33; 0.42; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0; 0.95; 0; 0" keyTimes="0; 0.33; 0.42; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(460, 130)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="460 130; 460 130; 460 108; 460 108; 460 130; 460 130" 
-      keyTimes="0; 0.33; 0.36; 0.39; 0.42; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-72" y="-16" width="144" height="32" rx="7" fill="#021c10" stroke="#00ff88" stroke-width="2"/>
-    <circle cx="-56" cy="0" r="4" fill="#00ff88" class="led-breathe" style="color: #00ff88;"/>
-    <text x="8" y="5" font-family="'Courier New', monospace" font-size="13.5" fill="#00ff88" text-anchor="middle" font-weight="bold">[TriTechz]</text>
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="0; 0; 1; 1; 0; 0" keyTimes="0; 0.32; 0.33; 0.42; 0.45; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-76" y="-6" width="152" height="15" rx="3" fill="#01140b" stroke="#00ff88" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#00ff88" text-anchor="middle" font-weight="bold">[CORE_OVERRIDE | POWER: MAX]</text>
+  <!-- 3. C / C++ (Ice Blue) -->
+  <g transform="translate(640, 125)">
+    <g class="box-wave" style="color: #38bdf8;">
+      <rect x="-58" y="-14" width="116" height="28" rx="6" fill="#061c2c" stroke="#38bdf8" stroke-width="1.8"/>
+      <circle cx="-44" cy="0" r="3.5" fill="#38bdf8" class="led-dot"/>
+      <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#38bdf8" text-anchor="middle" font-weight="bold">&lt;C / C++&gt;</text>
     </g>
   </g>
 
-  <!-- [NODE 4: C / C++ @ (680, 130)] - Spider visits at 50% - 58% -->
-  <circle cx="680" cy="130" r="8" fill="none" stroke="#38bdf8" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 8; 75; 8" keyTimes="0; 0.50; 0.58; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0; 0.95; 0; 0" keyTimes="0; 0.50; 0.58; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(680, 130)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="680 130; 680 130; 680 108; 680 108; 680 130; 680 130" 
-      keyTimes="0; 0.50; 0.53; 0.56; 0.58; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-60" y="-15" width="120" height="30" rx="6" fill="#041829" stroke="#38bdf8" stroke-width="1.8"/>
-    <circle cx="-46" cy="0" r="3.5" fill="#38bdf8" class="led-breathe" style="color: #38bdf8;"/>
-    <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#38bdf8" text-anchor="middle" font-weight="bold">&lt;C / C++&gt;</text>
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="0; 0; 1; 1; 0; 0" keyTimes="0; 0.49; 0.50; 0.58; 0.61; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-70" y="-6" width="140" height="15" rx="3" fill="#020e1a" stroke="#38bdf8" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#38bdf8" text-anchor="middle" font-weight="bold">[SYSTEM_NATIVE | LAT: 4ms]</text>
+  <!-- [ROW 2 - BOTTOM] -->
+  <!-- 4. Python (Neon Cyan) -->
+  <g transform="translate(280, 195)">
+    <g class="box-wave" style="color: #00f3ff;">
+      <rect x="-58" y="-14" width="116" height="28" rx="6" fill="#06182c" stroke="#00f3ff" stroke-width="1.8"/>
+      <circle cx="-44" cy="0" r="3.5" fill="#00f3ff" class="led-dot"/>
+      <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#00f3ff" text-anchor="middle" font-weight="bold">&lt;Python/&gt;</text>
     </g>
   </g>
 
-  <!-- [NODE 5: C# @ (680, 210)] - Spider visits at 67% - 75% -->
-  <circle cx="680" cy="210" r="8" fill="none" stroke="#c084fc" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 8; 75; 8" keyTimes="0; 0.67; 0.75; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0; 0.95; 0; 0" keyTimes="0; 0.67; 0.75; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(680, 210)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="680 210; 680 210; 680 188; 680 188; 680 210; 680 210" 
-      keyTimes="0; 0.67; 0.70; 0.73; 0.75; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-60" y="-15" width="120" height="30" rx="6" fill="#1b0829" stroke="#c084fc" stroke-width="1.8"/>
-    <circle cx="-46" cy="0" r="3.5" fill="#c084fc" class="led-breathe" style="color: #c084fc;"/>
-    <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#c084fc" text-anchor="middle" font-weight="bold">&lt;C#&gt;</text>
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="0; 0; 1; 1; 0; 0" keyTimes="0; 0.66; 0.67; 0.75; 0.78; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-70" y="-6" width="140" height="15" rx="3" fill="#13031e" stroke="#c084fc" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#c084fc" text-anchor="middle" font-weight="bold">[CLR_ENGINE | LAT: 11ms]</text>
+  <!-- 5. JavaScript (Gold) -->
+  <g transform="translate(460, 195)">
+    <g class="box-wave" style="color: #facc15;">
+      <rect x="-64" y="-14" width="128" height="28" rx="6" fill="#241e04" stroke="#facc15" stroke-width="1.8"/>
+      <circle cx="-50" cy="0" r="3.5" fill="#facc15" class="led-dot"/>
+      <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#facc15" text-anchor="middle" font-weight="bold">&lt;JavaScript/&gt;</text>
     </g>
   </g>
 
-  <!-- [NODE 6: JAVASCRIPT @ (460, 230)] - Spider visits at 84% - 92% -->
-  <circle cx="460" cy="230" r="8" fill="none" stroke="#facc15" stroke-width="3" filter="url(#superBloom)">
-    <animate attributeName="r" values="8; 8; 75; 8" keyTimes="0; 0.84; 0.92; 1" dur="24s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0; 0.95; 0; 0" keyTimes="0; 0.84; 0.92; 1" dur="24s" repeatCount="indefinite"/>
-  </circle>
-  <g transform="translate(460, 230)">
-    <animateTransform attributeName="transform" type="translate" 
-      values="460 230; 460 230; 460 208; 460 208; 460 230; 460 230" 
-      keyTimes="0; 0.84; 0.87; 0.90; 0.92; 1" dur="24s" repeatCount="indefinite"/>
-    <rect x="-64" y="-15" width="128" height="30" rx="6" fill="#241e03" stroke="#facc15" stroke-width="1.8"/>
-    <circle cx="-50" cy="0" r="3.5" fill="#facc15" class="led-breathe" style="color: #facc15;"/>
-    <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#facc15" text-anchor="middle" font-weight="bold">&lt;JavaScript/&gt;</text>
-    <g transform="translate(0, 22)">
-      <animate attributeName="opacity" values="0; 0; 1; 1; 0; 0" keyTimes="0; 0.83; 0.84; 0.92; 0.95; 1" dur="24s" repeatCount="indefinite"/>
-      <rect x="-70" y="-6" width="140" height="15" rx="3" fill="#181301" stroke="#facc15" stroke-width="1" opacity="0.95"/>
-      <text x="0" y="4.5" font-family="'Courier New', monospace" font-size="7.5" fill="#facc15" text-anchor="middle" font-weight="bold">[V8_RUNTIME | LAT: 7ms]</text>
+  <!-- 6. C# (Synthwave Violet) -->
+  <g transform="translate(640, 195)">
+    <g class="box-wave" style="color: #c084fc;">
+      <rect x="-58" y="-14" width="116" height="28" rx="6" fill="#1e0a2d" stroke="#c084fc" stroke-width="1.8"/>
+      <circle cx="-44" cy="0" r="3.5" fill="#c084fc" class="led-dot"/>
+      <text x="6" y="4.5" font-family="'Courier New', monospace" font-size="12" fill="#c084fc" text-anchor="middle" font-weight="bold">&lt;C#&gt;</text>
     </g>
   </g>
 
-  <!-- ======================================================== -->
-  <!-- CON NHỆN MECHA SENTINEL - HOÀN TOÀN TRONG KHUÔN HÌNH     -->
-  <!-- Sử dụng SVG animateMotion bản địa chuẩn 100% mọi trình duyệt -->
-  <!-- ======================================================== -->
+  <!-- ======================================================= -->
+  <!-- CON NHỆN CƠ KHÍ BÒ ZIC-ZAC 100% TRONG KHUÔN HÌNH       -->
+  <!-- Sử dụng SVG animateMotion bản địa chuẩn 100%           -->
+  <!-- ======================================================= -->
   <g>
-    <!-- Quỹ đạo bay tuần tra vòng kín tuyệt đối an toàn (X: 185-735, Y: 75-275) -->
+    <!-- Quỹ đạo Bò Zic-Zac liên tục qua các ô mã nguồn, an toàn tuyệt đối trong khung (X: 180-745, Y: 85-235) -->
     <animateMotion 
-      path="M 185,210 C 185,175 185,145 185,130 C 185,95 380,75 460,75 C 540,75 735,95 735,130 C 735,160 735,185 735,210 C 735,255 540,275 460,275 C 380,275 185,255 185,210 Z" 
-      dur="24s" 
+      path="M 180,210 C 200,160 250,90 280,95 C 310,100 370,225 400,230 C 430,235 490,90 520,95 C 550,100 610,225 640,230 C 680,235 745,170 745,130 C 745,95 670,85 640,95 C 610,105 550,225 520,230 C 490,235 430,90 400,95 C 370,100 310,225 280,230 C 250,235 180,250 180,210 Z" 
+      dur="18s" 
       repeatCount="indefinite" 
       rotate="auto"
-      calcMode="linear"
-      keyPoints="0; 0; 0.16; 0.16; 0.33; 0.33; 0.50; 0.50; 0.67; 0.67; 0.84; 0.84; 1"
-      keyTimes="0; 0.08; 0.16; 0.25; 0.33; 0.42; 0.50; 0.58; 0.67; 0.75; 0.84; 0.92; 1"
     />
 
-    <!-- BIỂU TƯỢNG ĐỨNG SUY NGHĨ (THINKING HUD: Hiện khi dừng lại phân tích) -->
-    <g transform="translate(0, -32)">
-      <circle cx="0" cy="0" r="10" stroke="#00f3ff" stroke-width="1.4" stroke-dasharray="3,2" fill="none"/>
-      <circle cx="0" cy="0" r="4" fill="#00ff88" filter="url(#softGlow)">
-        <animate attributeName="opacity" values="0.4; 1; 0.4" dur="0.8s" repeatCount="indefinite"/>
-      </circle>
-      <text x="14" y="3.5" font-family="'Courier New', monospace" font-size="8.5" fill="#00f3ff" font-weight="bold">[THINKING...]</text>
+    <!-- Nón quét Radar Laser (Scanner Cone) hướng về phía trước -->
+    <g class="radar-sweep">
+      <polygon points="30,-2 140,-50 155,45" fill="url(#radarFieldCone)" opacity="0.45"/>
+      <line x1="30" y1="0" x2="145" y2="0" stroke="#00f3ff" stroke-width="1.6" stroke-dasharray="5,3" opacity="0.95"/>
+      <circle cx="125" cy="0" r="5.5" stroke="#00ff88" stroke-width="1.3" fill="none"/>
+      <circle cx="125" cy="0" r="2.2" fill="#00ff88"/>
     </g>
 
-    <!-- NÓN QUÉT RADAR LASER (SCANNER CONE) -->
-    <g class="radar-cone-rot">
-      <polygon points="26,-2 135,-42 145,42" fill="url(#radarScanCyan)" opacity="0.45"/>
-      <line x1="26" y1="0" x2="140" y2="0" stroke="#00f3ff" stroke-width="1.8" stroke-dasharray="4,2"/>
-      <circle cx="125" cy="0" r="6" stroke="#00ff88" stroke-width="1.4" fill="none"/>
-      <circle cx="125" cy="0" r="2.5" fill="#00ff88"/>
-      <line x1="115" y1="0" x2="135" y2="0" stroke="#00ff88" stroke-width="1"/>
-      <line x1="125" y1="-10" x2="125" y2="10" stroke="#00ff88" stroke-width="1"/>
-    </g>
-
-    <!-- TIA SỢI TƠ LASER TETHER KẾT NỐI VÀO CARD -->
-    <g>
-      <animate attributeName="opacity" values="1; 0; 1; 0; 1" dur="1.2s" repeatCount="indefinite"/>
-      <line x1="28" y1="-8" x2="72" y2="-12" stroke="#00f3ff" stroke-width="3" stroke-linecap="round" filter="url(#cyanSparkGlow)"/>
-      <line x1="28" y1="-8" x2="72" y2="-12" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-      <line x1="28" y1="8" x2="72" y2="12" stroke="#00ff88" stroke-width="3" stroke-linecap="round" filter="url(#superBloom)"/>
-      <line x1="28" y1="8" x2="72" y2="12" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-      <circle cx="72" cy="-12" r="3.5" fill="#ffffff" filter="url(#cyanSparkGlow)"/>
-      <circle cx="72" cy="12" r="3.5" fill="#ffffff" filter="url(#cyanSparkGlow)"/>
-    </g>
-
-    <!-- TIA SÉT ĐIỆN TĨNH NHẤP NHÁY (LIGHTNING ARC) -->
+    <!-- Sợi tơ Laser Tether kép và tia sét hồ quang -->
     <g filter="url(#superBloom)">
-      <animate attributeName="opacity" values="0.9; 0.1; 0.9; 0.2; 1; 0" dur="0.4s" repeatCount="indefinite"/>
-      <path d="M 28 -8 L 38 -18 L 46 -6 L 56 -20 L 64 -8 L 72 -12" stroke="#00f3ff" stroke-width="1.8" fill="none"/>
-      <path d="M 28 8 L 38 18 L 46 6 L 56 20 L 64 8 L 72 12" stroke="#00ff88" stroke-width="1.8" fill="none"/>
+      <line x1="24" y1="-7" x2="65" y2="-12" stroke="#00f3ff" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="24" y1="-7" x2="65" y2="-12" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
+      <line x1="24" y1="7" x2="65" y2="12" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="24" y1="7" x2="65" y2="12" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="65" cy="-12" r="2.5" fill="#ffffff"/>
+      <circle cx="65" cy="12" r="2.5" fill="#ffffff"/>
     </g>
 
-    <!-- ===================================================== -->
-    <!-- 8 CHÂN CƠ KHÍ: 2 CHÂN TRƯỚC VƯƠN RA BỐC TEXT          -->
-    <!-- ===================================================== -->
+    <!-- 8 CHÂN NHỆN CƠ KHÍ BƯỚC THỰC (TETRAPOD KINEMATICS) -->
 
-    <!-- [CHÂN 1 TRƯỚC - TRÁI]: VƯƠN RA BỐC TEXT -->
-    <g transform="translate(16, -12)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="-5; 38; -5" dur="1.2s" repeatCount="indefinite"/>
+    <!-- [CHÂN 1] Trước - Trái -->
+    <g transform="translate(14, -12)">
+      <g class="sp-leg-a">
         <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
-        <path d="M 0 0 L 22 -24" stroke="url(#carbonLeg)" stroke-width="7" stroke-linecap="round"/>
-        <path d="M 0 0 L 22 -24" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="22" cy="-24" r="4" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
-        <path d="M 22 -24 L 48 -32 L 56 -24" stroke="#00f3ff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        <circle cx="56" cy="-24" r="3" fill="#00ff88" filter="url(#cyanSparkGlow)"/>
+        <path d="M 0 0 L 18 -26" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 18 -26" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="18" cy="-26" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M 18 -26 L 40 -38" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="-38" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- [CHÂN 2 TRƯỚC - PHẢI]: VƯƠN RA BỐC TEXT -->
-    <g transform="translate(16, 12)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="5; -38; 5" dur="1.2s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
-        <path d="M 0 0 L 22 24" stroke="url(#carbonLeg)" stroke-width="7" stroke-linecap="round"/>
-        <path d="M 0 0 L 22 24" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="22" cy="24" r="4" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
-        <path d="M 22 24 L 48 32 L 56 24" stroke="#00f3ff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        <circle cx="56" cy="24" r="3" fill="#00ff88" filter="url(#cyanSparkGlow)"/>
-      </g>
-    </g>
-
-    <!-- [6 CHÂN BƯỚC ĐIỀU TỐC THỦY LỰC] -->
-    <!-- Left Mid-Front -->
+    <!-- [CHÂN 2] Giữa Trước - Trái -->
     <g transform="translate(4, -15)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="-24; 26; -24" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L 6 -26" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L 6 -26" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="6" cy="-26" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M 6 -26 L 24 -42" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="24" cy="-42" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-b">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L 6 -28" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 6 -28" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="6" cy="-28" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M 6 -28 L 24 -44" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="24" cy="-44" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- Left Mid-Rear -->
+    <!-- [CHÂN 3] Giữa Sau - Trái -->
     <g transform="translate(-8, -15)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="26; -24; 26" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L -8 -26" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L -8 -26" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="-8" cy="-26" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M -8 -26 L 4 -42" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="4" cy="-42" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-a">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L -8 -28" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -8 -28" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="-8" cy="-28" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M -8 -28 L 4 -44" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="4" cy="-44" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- Left Rear -->
+    <!-- [CHÂN 4] Sau - Trái -->
     <g transform="translate(-18, -12)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="-24; 26; -24" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L -18 -22" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L -18 -22" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="-18" cy="-22" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M -18 -22 L -30 -36" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="-30" cy="-36" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-b">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L -18 -24" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -18 -24" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="-18" cy="-24" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M -18 -24 L -30 -38" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-30" cy="-38" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- Right Mid-Front -->
+    <!-- [CHÂN 5] Trước - Phải -->
+    <g transform="translate(14, 12)">
+      <g class="sp-leg-b">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L 18 26" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 18 26" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="18" cy="26" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M 18 26 L 40 38" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="38" r="2.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [CHÂN 6] Giữa Trước - Phải -->
     <g transform="translate(4, 15)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="26; -24; 26" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L 6 26" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L 6 26" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="6" cy="26" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M 6 26 L 24 42" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="24" cy="42" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-a">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L 6 28" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 6 28" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="6" cy="28" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M 6 28 L 24 44" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="24" cy="44" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- Right Mid-Rear -->
+    <!-- [CHÂN 7] Giữa Sau - Phải -->
     <g transform="translate(-8, 15)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="-24; 26; -24" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L -8 26" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L -8 26" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="-8" cy="26" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M -8 26 L 4 42" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="4" cy="42" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-b">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L -8 28" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -8 28" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="-8" cy="28" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M -8 28 L 4 44" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="4" cy="44" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- Right Rear -->
+    <!-- [CHÂN 8] Sau - Phải -->
     <g transform="translate(-18, 12)">
-      <g>
-        <animateTransform attributeName="transform" type="rotate" values="26; -24; 26" dur="0.36s" repeatCount="indefinite"/>
-        <circle cx="0" cy="0" r="4" fill="#08101e" stroke="#00f3ff" stroke-width="1.6"/>
-        <path d="M 0 0 L -18 22" stroke="url(#carbonLeg)" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 0 0 L -18 22" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="-18" cy="22" r="3.5" fill="#08101e" stroke="#00ff88" stroke-width="1.6"/>
-        <path d="M -18 22 L -30 36" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
-        <circle cx="-30" cy="-36" r="2.2" fill="#00ff88"/>
+      <g class="sp-leg-a">
+        <circle cx="0" cy="0" r="4.5" fill="#08101e" stroke="#00f3ff" stroke-width="1.8"/>
+        <path d="M 0 0 L -18 24" stroke="#1e293b" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -18 24" stroke="#00f3ff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="-18" cy="24" r="3.8" fill="#08101e" stroke="#00ff88" stroke-width="1.8"/>
+        <path d="M -18 24 L -30 38" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-30" cy="38" r="2.5" fill="#00ff88"/>
       </g>
     </g>
 
-    <!-- ===================================================== -->
-    <!-- THÂN NHỆN & LÕI NĂNG LƯỢNG HỒ QUANG (ARC REACTOR)     -->
-    <!-- ===================================================== -->
-    <ellipse cx="-16" cy="0" rx="22" ry="16" fill="url(#stealthChitin)" stroke="#00f3ff" stroke-width="2.2"/>
+    <!-- THÂN GIÁP NHỆN TITANIUM -->
+    <ellipse cx="-16" cy="0" rx="22" ry="16" fill="url(#armorPlates)" stroke="#00f3ff" stroke-width="2.2"/>
     <line x1="-26" y1="-8" x2="-26" y2="8" stroke="#00ff88" stroke-width="1.5"/>
     <line x1="-20" y1="-12" x2="-20" y2="12" stroke="#00f3ff" stroke-width="1.5"/>
 
-    <!-- Lõi Arc Reactor -->
+    <!-- Lõi Arc Reactor đập nhịp -->
     <circle cx="-14" cy="0" r="11" fill="#020617" stroke="#00ff88" stroke-width="2"/>
-    <circle cx="-14" cy="0" r="8" fill="url(#arcReactorCore)" class="reactor-pulse" filter="url(#cyanSparkGlow)"/>
+    <circle cx="-14" cy="0" r="8" fill="url(#arcCoreGlow)" class="core-pulse"/>
     <circle cx="-14" cy="0" r="2.8" fill="#ffffff"/>
 
-    <!-- Ngực & Đầu (Cephalothorax) -->
-    <polygon points="4,-16 18,-9 18,9 4,16 -8,12 -8,-12" fill="url(#stealthChitin)" stroke="#00f3ff" stroke-width="2.4"/>
+    <!-- Đầu ngực (Cephalothorax) -->
+    <polygon points="4,-16 18,-9 18,9 4,16 -8,12 -8,-12" fill="url(#armorPlates)" stroke="#00f3ff" stroke-width="2.4"/>
     <path d="M 0 -9 L 12 0 L 0 9" stroke="#00ff88" stroke-width="1.8" fill="none"/>
 
-    <!-- Cụm Mắt Quang Học 8 Mắt (Predator Cluster) -->
-    <circle cx="16" cy="-4" r="3" fill="#00ff88" filter="url(#softGlow)"/>
-    <circle cx="16" cy="4" r="3" fill="#00ff88" filter="url(#softGlow)"/>
-    <circle cx="19" cy="0" r="2.2" fill="#ffffff" filter="url(#cyanSparkGlow)"/>
+    <!-- Cụm Mắt Quang Học 8 Mắt -->
+    <circle cx="16" cy="-4" r="3" fill="url(#opticLaserLens)"/>
+    <circle cx="16" cy="4" r="3" fill="url(#opticLaserLens)"/>
+    <circle cx="19" cy="0" r="2.2" fill="#00f3ff"/>
     <circle cx="11" cy="-7" r="1.6" fill="#ff0055"/>
     <circle cx="11" cy="7" r="1.6" fill="#ff0055"/>
-    <circle cx="7" cy="-9" r="1.4" fill="#00f3ff"/>
-    <circle cx="7" cy="9" r="1.4" fill="#00f3ff"/>
+    <circle cx="7" cy="-9" r="1.4" fill="#00ff88"/>
+    <circle cx="7" cy="9" r="1.4" fill="#00ff88"/>
 
-    <!-- Kìm Càng Chelicerae -->
-    <path d="M 18 -6 L 28 -12 L 32 -4" stroke="#00f3ff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-    <circle cx="32" cy="-4" r="1.8" fill="#00ff88"/>
-    <path d="M 18 6 L 28 12 L 32 4" stroke="#00f3ff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-    <circle cx="32" cy="4" r="1.8" fill="#00ff88"/>
+    <!-- Kìm Càng Chelicerae gõ nhịp -->
+    <g class="fang-l">
+      <path d="M 18 -6 L 28 -12 L 32 -4" stroke="#00f3ff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <circle cx="32" cy="-4" r="1.8" fill="#00ff88"/>
+    </g>
+    <g class="fang-r">
+      <path d="M 18 6 L 28 12 L 32 4" stroke="#00f3ff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <circle cx="32" cy="4" r="1.8" fill="#00ff88"/>
+    </g>
 
     <!-- Xúc giác Pedipalps -->
     <path d="M 18 -3 Q 26 -14 34 -15" stroke="#00f3ff" stroke-width="1.4" fill="none"/>
