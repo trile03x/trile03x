@@ -1,7 +1,7 @@
 <div align="center" id="trile03x-profile">
 
-# HI THERE, I'M LE VAN TRI (TriTechz) 🇻🇳
-### 🚀 Software Engineer | Java • JavaScript • C / C++ • C# • Python | Duy Tan University
+# HI THERE, I'M LE VAN TRI (TriTechz) ️🇻🇳
+###  Software Engineer | Java • JavaScript • C / C++ • C# • Python | Duy Tan University
 
 <!-- ============================================== -->
 <!-- CYBER SPIDER (LIFELIKE INTERACTIVE MATRIX)     -->
@@ -20,7 +20,7 @@
 <!-- ============================================== -->
 <!-- CONNECT WITH ME                                -->
 <!-- ============================================== -->
-### 🛰️ [CONNECT WITH ME]
+###  [CONNECT WITH ME]
 
 <p align="center">
   <a href="https://github.com/trile03x" target="_blank">
