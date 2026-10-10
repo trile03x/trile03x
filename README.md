@@ -1,6 +1,6 @@
 <div align="center" id="trile03x-profile">
 
-# 👾 HI THERE, I'M LE VAN TRI (@trile03x) 👾
+# 👾 HI THERE, I'M LE VAN TRI (TriTechz)) 👾
 ### 🚀 Software Engineer | Java • JavaScript • C / C++ • C# • Python | Duy Tan University
 
 <!-- ============================================== -->
