@@ -9,7 +9,7 @@
 <!-- ============================================== -->
 <p align="center">
   <a href="#trile03x-profile">
-    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_interactive_v2.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
+    <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_spider_interactive_v3.svg" alt="Cyber Mecha Spider Sentinel" width="100%" />
   </a>
 </p>
 
