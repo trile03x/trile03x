@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Cyber Mecha Bug</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulseNeon {
+      0%, 100% { filter: drop-shadow(0 0 10px var(--neon-glow)); }
+      50% { filter: drop-shadow(0 0 3px var(--neon-glow)); }
+    }
+    @keyframes scanGrid {
+      0% { background-position: 0 0; }
+      100% { background-position: 32px 32px; }
+    }
+    .tech-grid {
+      background-size: 28px 28px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    }
+    .scan-beam {
+      animation: scanSweep 3.5s linear infinite;
+    }
+    @keyframes scanSweep {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(600%); }
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-1.5 sm:p-2 select-none">
+  <!-- Master Frame Card -->
+  <div class="bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden relative backdrop-blur-xl">
+    
+    <!-- Top Cyber Deck Header -->
+    <div class="flex items-center justify-between px-3.5 py-2 border-b border-[var(--border)] bg-[var(--background)]/75 text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+        </span>
+        <span class="font-bold tracking-wider text-cyan-400 font-mono text-[12px] drop-shadow-[0_0_8px_rgba(0,243,255,0.6)]">
+          APEX_MECHA_BUG // MK-VII
+        </span>
+      </div>
+
+      <!-- Color Theme Palette & Controls -->
+      <div class="flex items-center gap-1.5">
+        <div class="flex items-center bg-[var(--border)]/40 p-0.5 rounded-lg border border-[var(--border)]">
+          <button id="themeCyan" class="w-4 h-4 rounded-full bg-cyan-400 border border-white/40 cursor-pointer transition hover:scale-110" title="Cyan Cyberpunk"></button>
+          <button id="themeGreen" class="w-4 h-4 rounded-full bg-emerald-400 border border-white/20 cursor-pointer ml-1 transition hover:scale-110" title="Matrix Lime"></button>
+          <button id="themeRed" class="w-4 h-4 rounded-full bg-rose-500 border border-white/20 cursor-pointer ml-1 transition hover:scale-110" title="Crimson Phantom"></button>
+          <button id="themePurple" class="w-4 h-4 rounded-full bg-purple-400 border border-white/20 cursor-pointer ml-1 transition hover:scale-110" title="Synthwave Neon"></button>
+        </div>
+
+        <button id="modeBtn" class="px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/30 transition text-[11px] cursor-pointer flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+          <span id="modeText">Săn Text Tự Động</span>
+        </button>
+
+        <button id="soundBtn" class="px-2 py-1 rounded-md bg-[var(--border)]/50 hover:bg-[var(--border)] text-[var(--muted-foreground)] hover:text-cyan-300 transition text-[11px] cursor-pointer" title="Âm thanh FX">
+          🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- Canvas Simulation Stage -->
+    <div class="relative w-full h-[330px] tech-grid bg-[#050811] overflow-hidden cursor-crosshair">
+      <canvas id="bugCanvas" class="w-full h-full block"></canvas>
+
+      <!-- Heads-Up Display (HUD) Info -->
+      <div class="absolute top-2.5 left-3 pointer-events-none text-[11px] font-mono leading-relaxed space-y-0.5 text-slate-300">
+        <div class="flex items-center gap-2">
+          <span class="text-cyan-400 font-bold">RADAR:</span>
+          <span id="hudTarget" class="text-emerald-400 font-semibold uppercase">[LOCKING TARGET]</span>
+        </div>
+        <div class="flex items-center gap-2 text-[10px] text-slate-400">
+          <span>DATA HARVESTED:</span>
+          <span id="dataScore" class="text-cyan-300 font-bold font-mono">0</span>
+          <span>FRAGMENTS</span>
+        </div>
+      </div>
+
+      <!-- Quick Guidance Watermark -->
+      <div class="absolute bottom-2 right-3 pointer-events-none text-[10px] font-mono text-cyan-400/50 text-right leading-tight">
+        <div>⚡ CHẠM/CLICK BẤT KỲ ĐÂU ĐỂ THẢ TEXT</div>
+        <div>CON BỌ CÀO CHÂN &amp; BẮN TIA HẤP THỤ</div>
+      </div>
+
+      <!-- Scanline Beam Overlay -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-15">
+        <div class="w-full h-10 bg-gradient-to-b from-transparent via-cyan-400 to-transparent scan-beam"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Data Stream & Harvested Tray -->
+    <div class="p-2.5 border-t border-[var(--border)] bg-[var(--background)]/85 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+      <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
+        <span class="text-cyan-400 shrink-0 flex items-center gap-1 font-bold text-[11px]">
+          <svg class="w-3.5 h-3.5 text-cyan-400 animate-spin" style="animation-duration: 6s;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6.364 1.636l-.707.707M20 12h-1M17.657 17.657l-.707-.707M12 20v-1m-5.657-.343l.707-.707M4 12h1M6.343 6.343l.707.707"/>
+          </svg>
+          KHO DỮ LIỆU:
+        </span>
+        <div id="harvestedVault" class="flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
+          <span class="px-2 py-0.5 rounded bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-[10.5px]">Core_Initialized</span>
+        </div>
+      </div>
+
+      <!-- Add Custom Keyword Input -->
+      <div class="flex items-center gap-1 shrink-0">
+        <input id="inputKeyword" type="text" placeholder="Gõ từ khóa..." maxlength="20" class="bg-[var(--card)] border border-[var(--border)] rounded px-2.5 py-1 text-xs text-[var(--foreground)] focus:outline-none focus:border-cyan-400 w-28 sm:w-36 font-mono placeholder:text-slate-500">
+        <button id="btnFeed" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold px-3 py-1 rounded text-xs transition cursor-pointer shadow-md shadow-cyan-500/20">
+          Thả Text
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- Audio Sound Synthesizer ---
+    let soundEnabled = true;
+    let audioCtx = null;
+    function playSfx(freq = 600, duration = 0.08, type = 'sine', sweepTo = null) {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        if (sweepTo) {
+          osc.frequency.exponentialRampToValueAtTime(sweepTo, audioCtx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(0.09, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    // --- Cyber Color Themes ---
+    const themes = {
+      cyan: {
+        primary: '#00f3ff',
+        secondary: '#00ff88',
+        core: '#00e1ff',
+        shell: '#0b1626',
+        shellAccent: '#162e4a',
+        accentGlow: 'rgba(0, 243, 255, 0.7)',
+        name: 'CYAN'
+      },
+      green: {
+        primary: '#00ff88',
+        secondary: '#a3ff00',
+        core: '#55ff00',
+        shell: '#091d12',
+        shellAccent: '#133924',
+        accentGlow: 'rgba(0, 255, 136, 0.7)',
+        name: 'MATRIX'
+      },
+      red: {
+        primary: '#ff0055',
+        secondary: '#ff7700',
+        core: '#ff0033',
+        shell: '#240b12',
+        shellAccent: '#451624',
+        accentGlow: 'rgba(255, 0, 85, 0.7)',
+        name: 'CRIMSON'
+      },
+      purple: {
+        primary: '#d946ef',
+        secondary: '#06b6d4',
+        core: '#e879f9',
+        shell: '#1d0e2e',
+        shellAccent: '#3b1d5c',
+        accentGlow: 'rgba(217, 70, 239, 0.7)',
+        name: 'SYNTH'
+      }
+    };
+    let currentTheme = themes.cyan;
+
+    // --- Canvas & DPI Setup ---
+    const canvas = document.getElementById('bugCanvas');
+    const ctx = canvas.getContext('2d');
+    const hudTarget = document.getElementById('hudTarget');
+    const dataScoreEl = document.getElementById('dataScore');
+    const harvestedVault = document.getElementById('harvestedVault');
+    const modeBtn = document.getElementById('modeBtn');
+    const modeText = document.getElementById('modeText');
+    const soundBtn = document.getElementById('soundBtn');
+    const inputKeyword = document.getElementById('inputKeyword');
+    const btnFeed = document.getElementById('btnFeed');
+
+    let displayW = 600, displayH = 330;
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      displayW = rect.width;
+      displayH = rect.height;
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Mode: 'hunt' (auto roam/seek data) vs 'follow' (track pointer)
+    let currentMode = 'hunt';
+    let mouse = { x: displayW / 2, y: displayH / 2, active: false };
+    let dataScore = 0;
+
+    // Preset Tech Words for trile03x
+    const techWords = [
+      'Python', 'Duy Tan Uni', 'AI Chatbot', 'HTML5/CSS3', 'Bug Fixed', 
+      'Telegram Bot', 'MySQL', 'FullStack', 'Commit 2026', 'Da Nang', 'Clean Code'
+    ];
+
+    // Floating Data Packets
+    let dataPackets = [];
+    function spawnDataPacket(text = null, px = null, py = null) {
+      const word = text || techWords[Math.floor(Math.random() * techWords.length)];
+      dataPackets.push({
+        text: word,
+        x: px !== null ? px : Math.random() * (displayW - 120) + 60,
+        y: py !== null ? py : Math.random() * (displayH - 80) + 40,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        scale: 1,
+        dissolving: false,
+        dissolveRatio: 0,
+        floatOffset: Math.random() * Math.PI * 2
+      });
+    }
+
+    for (let i = 0; i < 4; i++) spawnDataPacket();
+
+    // FX Particles & Electric Arcs
+    let particles = [];
+    let electricBolts = [];
+
+    function triggerHarvestFX(targetX, targetY, sourceX, sourceY) {
+      // Create lightning bolt from bug mouth to target
+      electricBolts.push({
+        x1: sourceX, y1: sourceY,
+        x2: targetX, y2: targetY,
+        life: 14,
+        color: currentTheme.primary
+      });
+
+      // Burst of binary and spark fragments
+      for (let i = 0; i < 22; i++) {
+        const ang = Math.random() * Math.PI * 2;
+        const spd = Math.random() * 3.5 + 1;
+        particles.push({
+          x: targetX,
+          y: targetY,
+          vx: Math.cos(ang) * spd,
+          vy: Math.sin(ang) * spd,
+          life: 1,
+          decay: Math.random() * 0.035 + 0.02,
+          char: Math.random() > 0.5 ? (Math.random() > 0.5 ? '1' : '0') : '◆',
+          color: Math.random() > 0.5 ? currentTheme.primary : currentTheme.secondary,
+          size: Math.random() * 2.5 + 1.2
+        });
+      }
+    }
+
+    // Footstep Energy Ripple
+    let footRipples = [];
+    function addFootRipple(x, y) {
+      footRipples.push({
+        x, y,
+        radius: 2,
+        maxRadius: 10,
+        alpha: 0.8,
+        color: currentTheme.primary
+      });
+    }
+
+    // --- REALISTIC INVERSE-KINEMATIC MECHA BUG ---
+    const mechaBug = {
+      x: 180,
+      y: 160,
+      angle: 0,
+      speed: 0,
+      maxSpeed: 2.8,
+      turnSpeed: 0.14,
+      targetX: 180,
+      targetY: 160,
+      pincerAngle: 0, // Mandible biting angle
+      coreSpin: 0,
+      thrusterFlare: 0,
+
+      // 6 Articulated 3-segment legs with independent foot placement
+      legs: [],
+
+      init() {
+        this.legs = [];
+        // Layout: 3 pairs (Front, Mid, Rear)
+        const configs = [
+          { side: -1, offsetAngle: -0.6, reach: 42, restLen: 38, legId: 0 }, // Front Left
+          { side:  1, offsetAngle:  0.6, reach: 42, restLen: 38, legId: 1 }, // Front Right
+          { side: -1, offsetAngle: -1.5, reach: 46, restLen: 42, legId: 2 }, // Mid Left
+          { side:  1, offsetAngle:  1.5, reach: 46, restLen: 42, legId: 3 }, // Mid Right
+          { side: -1, offsetAngle: -2.4, reach: 44, restLen: 40, legId: 4 }, // Rear Left
+          { side:  1, offsetAngle:  2.4, reach: 44, restLen: 40, legId: 5 }  // Rear Right
+        ];
+
+        for (const cfg of configs) {
+          this.legs.push({
+            ...cfg,
+            // Tripod gait group: Group 0 (0, 3, 4), Group 1 (1, 2, 5)
+            gaitGroup: (cfg.legId === 0 || cfg.legId === 3 || cfg.legId === 4) ? 0 : 1,
+            footX: this.x + Math.cos(this.angle + cfg.offsetAngle) * cfg.reach,
+            footY: this.y + Math.sin(this.angle + cfg.offsetAngle) * cfg.reach,
+            targetFootX: 0,
+            targetFootY: 0,
+            isStepping: false,
+            stepProgress: 0,
+            stepHeight: 0
+          });
+        }
+      },
+
+      update() {
+        this.coreSpin += 0.05;
+
+        // 1. Determine Target
+        if (currentMode === 'hunt' || !mouse.active) {
+          // Look for closest alive text packet
+          let closest = null;
+          let minDist = 999999;
+          for (const dp of dataPackets) {
+            if (dp.dissolving) continue;
+            const d = Math.hypot(dp.x - this.x, dp.y - this.y);
+            if (d < minDist) {
+              minDist = d;
+              closest = dp;
+            }
+          }
+          if (closest) {
+            this.targetX = closest.x;
+            this.targetY = closest.y;
+            hudTarget.textContent = `TARGET: [${closest.text}]`;
+            hudTarget.className = 'text-cyan-400 font-bold';
+          } else {
+            // Idle wander in circle
+            this.targetX = displayW / 2 + Math.cos(Date.now() * 0.0012) * 110;
+            this.targetY = displayH / 2 + Math.sin(Date.now() * 0.0016) * 60;
+            hudTarget.textContent = 'PATROLLING SECTOR';
+            hudTarget.className = 'text-emerald-400 font-semibold';
+          }
+        } else {
+          this.targetX = mouse.x;
+          this.targetY = mouse.y;
+          hudTarget.textContent = 'MANUAL POINTER TRACK';
+          hudTarget.className = 'text-amber-400 font-bold';
+        }
+
+        // 2. Physics & Body Steering
+        const dx = this.targetX - this.x;
+        const dy = this.targetY - this.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist > 15) {
+          const desiredAngle = Math.atan2(dy, dx);
+          let diff = desiredAngle - this.angle;
+          while (diff < -Math.PI) diff += Math.PI * 2;
+          while (diff > Math.PI) diff -= Math.PI * 2;
+          this.angle += diff * this.turnSpeed;
+
+          this.speed = Math.min(this.maxSpeed, dist * 0.075);
+          this.x += Math.cos(this.angle) * this.speed;
+          this.y += Math.sin(this.angle) * this.speed;
+          this.thrusterFlare = Math.min(1, this.thrusterFlare + 0.15);
+        } else {
+          this.speed = 0;
+          this.thrusterFlare = Math.max(0, this.thrusterFlare - 0.05);
+        }
+
+        // Clamp inside canvas boundary
+        this.x = Math.max(45, Math.min(displayW - 45, this.x));
+        this.y = Math.max(40, Math.min(displayH - 40, this.y));
+
+        // 3. Procedural Hexapod Leg Stepping (Tripod Gait)
+        // Which tripod group is allowed to lift?
+        const gaitPhase = Math.floor(Date.now() * 0.008) % 2;
+
+        for (const leg of this.legs) {
+          // Mount socket on the chassis
+          const mountDist = 18;
+          const mountX = this.x + Math.cos(this.angle + leg.offsetAngle) * mountDist;
+          const mountY = this.y + Math.sin(this.angle + leg.offsetAngle) * mountDist;
+          leg.mountX = mountX;
+          leg.mountY = mountY;
+
+          // Ideal foot resting spot in world space
+          const idealX = mountX + Math.cos(this.angle + leg.offsetAngle) * leg.restLen + Math.cos(this.angle) * (this.speed * 8);
+          const idealY = mountY + Math.sin(this.angle + leg.offsetAngle) * leg.restLen + Math.sin(this.angle) * (this.speed * 8);
+
+          const footDist = Math.hypot(idealX - leg.footX, idealY - leg.footY);
+
+          // If foot is too stretched and its gait group is ready, start step!
+          if (footDist > 22 && !leg.isStepping && leg.gaitGroup === gaitPhase) {
+            leg.isStepping = true;
+            leg.stepProgress = 0;
+            leg.startFootX = leg.footX;
+            leg.startFootY = leg.footY;
+            leg.targetFootX = idealX + Math.cos(this.angle) * (this.speed * 6);
+            leg.targetFootY = idealY + Math.sin(this.angle) * (this.speed * 6);
+          }
+
+          // Step animation
+          if (leg.isStepping) {
+            leg.stepProgress += 0.14;
+            if (leg.stepProgress >= 1) {
+              leg.isStepping = false;
+              leg.footX = leg.targetFootX;
+              leg.footY = leg.targetFootY;
+              leg.stepHeight = 0;
+              // Foot plant spark & ripple
+              addFootRipple(leg.footX, leg.footY);
+              if (Math.random() > 0.4) playSfx(220, 0.02, 'square');
+            } else {
+              // Interpolate foot position with parabolic lift
+              const t = leg.stepProgress;
+              leg.footX = leg.startFootX + (leg.targetFootX - leg.startFootX) * t;
+              leg.footY = leg.startFootY + (leg.targetFootY - leg.startFootY) * t;
+              leg.stepHeight = Math.sin(t * Math.PI) * 10; // Lift height
+            }
+          }
+        }
+
+        // 4. Check Text Collision / Harvesting
+        let mouthX = this.x + Math.cos(this.angle) * 26;
+        let mouthY = this.y + Math.sin(this.angle) * 26;
+
+        for (const dp of dataPackets) {
+          if (dp.dissolving) continue;
+          const d = Math.hypot(dp.x - mouthX, dp.y - mouthY);
+          if (d < 46) {
+            // Mandible snaps and locks on
+            dp.dissolving = true;
+            this.pincerAngle = 0.5; // Bite!
+            triggerHarvestFX(dp.x, dp.y, mouthX, mouthY);
+            playSfx(750, 0.12, 'sawtooth', 1200);
+
+            dataScore += 1;
+            dataScoreEl.textContent = dataScore;
+            addVaultItem(dp.text);
+
+            setTimeout(() => {
+              if (dataPackets.filter(p => !p.dissolving).length < 4) {
+                spawnDataPacket();
+              }
+            }, 1000);
+          }
+        }
+
+        // Pincer relaxation
+        this.pincerAngle = Math.max(0.12, this.pincerAngle - 0.04);
+      },
+
+      draw() {
+        ctx.save();
+
+        // 1. Draw Robotic Legs (Layer below body)
+        for (const leg of this.legs) {
+          const mx = leg.mountX;
+          const my = leg.mountY;
+          const fx = leg.footX;
+          const fy = leg.footY;
+
+          // 2-Joint Inverse Kinematics (Coxa -> Femur -> Tibia Claw)
+          const midX = (mx + fx) / 2 + Math.cos(this.angle + (leg.side * Math.PI / 2)) * 10;
+          const midY = (my + fy) / 2 + Math.sin(this.angle + (leg.side * Math.PI / 2)) * 10 - (leg.stepHeight || 0);
+
+          // Upper segment (Femur)
+          ctx.strokeStyle = '#1e293b';
+          ctx.lineWidth = 4.5;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(mx, my);
+          ctx.lineTo(midX, midY);
+          ctx.stroke();
+
+          // Femur Neon Conduit Line
+          ctx.strokeStyle = currentTheme.primary;
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          ctx.moveTo(mx, my);
+          ctx.lineTo(midX, midY);
+          ctx.stroke();
+
+          // Knee Joint Servo
+          ctx.fillStyle = '#0f172a';
+          ctx.strokeStyle = currentTheme.secondary;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.arc(midX, midY, 3.2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Lower segment (Tibia sharp blade)
+          ctx.strokeStyle = currentTheme.primary;
+          ctx.lineWidth = 2.2;
+          ctx.beginPath();
+          ctx.moveTo(midX, midY);
+          ctx.lineTo(fx, fy);
+          ctx.stroke();
+
+          // Foot Magnet Tip Pad
+          ctx.fillStyle = currentTheme.secondary;
+          ctx.shadowColor = currentTheme.primary;
+          ctx.shadowBlur = 6;
+          ctx.beginPath();
+          ctx.arc(fx, fy, 2.2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+
+        // 2. Draw Mecha Bug Chassis & Armor
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+
+        // Underbody Glow / Ambient Shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.beginPath();
+        ctx.ellipse(0, 2, 28, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Rear Thruster Exhaust Flare
+        if (this.thrusterFlare > 0.05) {
+          ctx.save();
+          ctx.fillStyle = currentTheme.primary;
+          ctx.shadowColor = currentTheme.primary;
+          ctx.shadowBlur = 12 * this.thrusterFlare;
+          ctx.beginPath();
+          ctx.moveTo(-22, -4);
+          ctx.lineTo(-32 - Math.random() * 8 * this.thrusterFlare, 0);
+          ctx.lineTo(-22, 4);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // --- SEGMENTED ABDOMEN (3 Overlapping Carapace Armor Plates) ---
+        for (let i = 2; i >= 0; i--) {
+          const segX = -10 - i * 6;
+          const segRx = 14 - i * 2;
+          const segRy = 12 - i * 2;
+
+          ctx.fillStyle = i === 1 ? currentTheme.shellAccent : currentTheme.shell;
+          ctx.strokeStyle = currentTheme.primary;
+          ctx.lineWidth = 1.4;
+
+          ctx.beginPath();
+          ctx.ellipse(segX, 0, segRx, segRy, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+
+          // Armor panel inlays / vents
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(segX - segRx + 4, 0);
+          ctx.lineTo(segX + segRx - 4, 0);
+          ctx.stroke();
+        }
+
+        // --- CENTER ARC REACTOR CORE ---
+        // Reactor Well
+        ctx.fillStyle = '#050a14';
+        ctx.strokeStyle = currentTheme.secondary;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(-8, 0, 7.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Spinning Plasma Core Dots
+        ctx.save();
+        ctx.translate(-8, 0);
+        ctx.rotate(this.coreSpin);
+        ctx.fillStyle = currentTheme.core;
+        ctx.shadowColor = currentTheme.primary;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(0, 0, 4, 0, Math.PI * 2);
+        ctx.fill();
+        // 3 Orbiting energy nodes
+        for (let a = 0; a < 3; a++) {
+          const ang = a * (Math.PI * 2 / 3);
+          ctx.beginPath();
+          ctx.arc(Math.cos(ang) * 5.2, Math.sin(ang) * 5.2, 1.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+
+        // --- THORAX & SHOULDER PODS ---
+        ctx.fillStyle = currentTheme.shell;
+        ctx.strokeStyle = currentTheme.primary;
+        ctx.lineWidth = 1.6;
+
+        // Armored Main Shell
+        ctx.beginPath();
+        ctx.moveTo(8, -12);
+        ctx.lineTo(16, -6);
+        ctx.lineTo(16, 6);
+        ctx.lineTo(8, 12);
+        ctx.lineTo(-4, 10);
+        ctx.lineTo(-4, -10);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Tech Decal / Hazard Line
+        ctx.strokeStyle = currentTheme.secondary;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(2, -7);
+        ctx.lineTo(12, -2);
+        ctx.moveTo(2, 7);
+        ctx.lineTo(12, 2);
+        ctx.stroke();
+
+        // --- HEAD SENSOR MATRIX ---
+        ctx.fillStyle = '#08101e';
+        ctx.strokeStyle = currentTheme.secondary;
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(14, -7);
+        ctx.lineTo(24, 0);
+        ctx.lineTo(14, 7);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Multi-Lens Predator Optics (Glowing Eye Cluster)
+        ctx.fillStyle = currentTheme.secondary;
+        ctx.shadowColor = currentTheme.secondary;
+        ctx.shadowBlur = 8;
+        // Central Main Visor
+        ctx.fillRect(18, -1.5, 4, 3);
+        // Lateral Targeting Lenses
+        ctx.beginPath();
+        ctx.arc(16, -4, 1.5, 0, Math.PI * 2);
+        ctx.arc(16, 4, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // --- MECHANICAL PINCERS / MANDIBLES ---
+        ctx.strokeStyle = currentTheme.primary;
+        ctx.lineWidth = 2.2;
+        ctx.lineCap = 'round';
+        // Left Pincer
+        ctx.beginPath();
+        ctx.moveTo(20, -4);
+        ctx.lineTo(28 + Math.cos(-this.pincerAngle) * 5, -8 - Math.sin(this.pincerAngle) * 6);
+        ctx.lineTo(32, -2 - this.pincerAngle * 4);
+        ctx.stroke();
+        // Right Pincer
+        ctx.beginPath();
+        ctx.moveTo(20, 4);
+        ctx.lineTo(28 + Math.cos(this.pincerAngle) * 5, 8 + Math.sin(this.pincerAngle) * 6);
+        ctx.lineTo(32, 2 + this.pincerAngle * 4);
+        ctx.stroke();
+
+        // Segmented Sensory Antennae
+        ctx.strokeStyle = currentTheme.primary;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(22, -3);
+        ctx.lineTo(34, -14);
+        ctx.moveTo(22, 3);
+        ctx.lineTo(34, 14);
+        ctx.stroke();
+
+        ctx.fillStyle = currentTheme.secondary;
+        ctx.beginPath();
+        ctx.arc(34, -14, 1.5, 0, Math.PI * 2);
+        ctx.arc(34, 14, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+    };
+
+    mechaBug.init();
+
+    // Helper: Add tag to HUD Vault
+    function addVaultItem(text) {
+      const tag = document.createElement('span');
+      tag.className = 'px-2 py-0.5 rounded bg-cyan-900/50 border border-cyan-400/60 text-cyan-200 text-[10.5px] font-bold animate-pulse shadow-sm';
+      tag.textContent = text;
+      harvestedVault.prepend(tag);
+      if (harvestedVault.children.length > 5) {
+        harvestedVault.removeChild(harvestedVault.lastChild);
+      }
+    }
+
+    // --- Interactive Mouse & Touch ---
+    function updateCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      mouse.x = clientX - rect.left;
+      mouse.y = clientY - rect.top;
+      mouse.active = true;
+    }
+
+    canvas.addEventListener('mousemove', updateCoords);
+    canvas.addEventListener('mouseleave', () => { mouse.active = false; });
+
+    canvas.addEventListener('click', (e) => {
+      updateCoords(e);
+      spawnDataPacket(null, mouse.x, mouse.y);
+      addFootRipple(mouse.x, mouse.y);
+      playSfx(480, 0.08, 'sine', 960);
+    });
+
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      updateCoords(e);
+      spawnDataPacket(null, mouse.x, mouse.y);
+      addFootRipple(mouse.x, mouse.y);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      updateCoords(e);
+    }, { passive: false });
+
+    // Mode Toggle
+    modeBtn.addEventListener('click', () => {
+      if (currentMode === 'hunt') {
+        currentMode = 'follow';
+        modeText.textContent = 'Theo Chuột/Chạm';
+        modeBtn.className = 'px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition text-[11px] cursor-pointer flex items-center gap-1';
+      } else {
+        currentMode = 'hunt';
+        modeText.textContent = 'Săn Text Tự Động';
+        modeBtn.className = 'px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/30 transition text-[11px] cursor-pointer flex items-center gap-1';
+      }
+      playSfx(620, 0.06);
+    });
+
+    // Sound Toggle
+    soundBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      soundBtn.textContent = soundEnabled ? '🔊' : '🔇';
+    });
+
+    // Theme Switchers
+    document.getElementById('themeCyan').addEventListener('click', () => { currentTheme = themes.cyan; playSfx(500, 0.05); });
+    document.getElementById('themeGreen').addEventListener('click', () => { currentTheme = themes.green; playSfx(600, 0.05); });
+    document.getElementById('themeRed').addEventListener('click', () => { currentTheme = themes.red; playSfx(700, 0.05); });
+    document.getElementById('themePurple').addEventListener('click', () => { currentTheme = themes.purple; playSfx(800, 0.05); });
+
+    // Feed Custom Keyword
+    function feedCustom() {
+      const val = inputKeyword.value.trim();
+      if (val) {
+        spawnDataPacket(val);
+        inputKeyword.value = '';
+        playSfx(680, 0.06);
+      }
+    }
+    btnFeed.addEventListener('click', feedCustom);
+    inputKeyword.addEventListener('keypress', (e) => { if (e.key === 'Enter') feedCustom(); });
+
+    // --- MAIN RENDER CYCLE ---
+    function animate() {
+      ctx.clearRect(0, 0, displayW, displayH);
+
+      // 1. Draw Footprint Ripples
+      for (let i = footRipples.length - 1; i >= 0; i--) {
+        const r = footRipples[i];
+        r.radius += 0.45;
+        r.alpha -= 0.035;
+        if (r.alpha <= 0) {
+          footRipples.splice(i, 1);
+          continue;
+        }
+        ctx.strokeStyle = r.color;
+        ctx.globalAlpha = r.alpha;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      // 2. Draw Floating Data Packets
+      for (let i = dataPackets.length - 1; i >= 0; i--) {
+        const dp = dataPackets[i];
+        if (dp.dissolving) {
+          dp.dissolveRatio += 0.09;
+          dp.scale = 1 + dp.dissolveRatio * 0.9;
+          if (dp.dissolveRatio >= 1) {
+            dataPackets.splice(i, 1);
+            continue;
+          }
+        } else {
+          dp.x += dp.vx;
+          dp.y += dp.vy;
+          if (dp.x < 50 || dp.x > displayW - 50) dp.vx *= -1;
+          if (dp.y < 35 || dp.y > displayH - 35) dp.vy *= -1;
+        }
+
+        ctx.save();
+        ctx.translate(dp.x, dp.y);
+        ctx.scale(dp.scale, dp.scale);
+        ctx.globalAlpha = dp.dissolving ? (1 - dp.dissolveRatio) : 0.95;
+
+        // Measure text badge
+        ctx.font = 'bold 11px monospace';
+        const txtW = ctx.measureText(dp.text).width;
+        const padX = 8, boxH = 20;
+        const boxW = txtW + padX * 2;
+
+        // Cyber Tag Shell
+        ctx.fillStyle = 'rgba(7, 14, 26, 0.88)';
+        ctx.strokeStyle = currentTheme.primary;
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(-boxW / 2, -boxH / 2, boxW, boxH);
+        ctx.fillRect(-boxW / 2, -boxH / 2, boxW, boxH);
+
+        // Tech Brackets at corners
+        ctx.fillStyle = currentTheme.secondary;
+        ctx.fillRect(-boxW / 2, -boxH / 2, 2.5, 2.5);
+        ctx.fillRect(boxW / 2 - 2.5, -boxH / 2, 2.5, 2.5);
+        ctx.fillRect(-boxW / 2, boxH / 2 - 2.5, 2.5, 2.5);
+        ctx.fillRect(boxW / 2 - 2.5, boxH / 2 - 2.5, 2.5, 2.5);
+
+        // Text
+        ctx.fillStyle = currentTheme.primary;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(dp.text, 0, 1);
+
+        ctx.restore();
+      }
+
+      // 3. Draw Electric Lightning Tractor Bolts
+      for (let i = electricBolts.length - 1; i >= 0; i--) {
+        const b = electricBolts[i];
+        b.life--;
+        if (b.life <= 0) {
+          electricBolts.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.strokeStyle = b.color;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = b.color;
+        ctx.shadowBlur = 10;
+        ctx.globalAlpha = b.life / 14;
+
+        // Jagged lightning path
+        ctx.beginPath();
+        ctx.moveTo(b.x1, b.y1);
+        const steps = 6;
+        for (let s = 1; s < steps; s++) {
+          const ratio = s / steps;
+          const px = b.x1 + (b.x2 - b.x1) * ratio + (Math.random() - 0.5) * 16;
+          const py = b.y1 + (b.y2 - b.y1) * ratio + (Math.random() - 0.5) * 16;
+          ctx.lineTo(px, py);
+        }
+        ctx.lineTo(b.x2, b.y2);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // 4. Update & Draw the Apex Mecha Bug
+      mechaBug.update();
+      mechaBug.draw();
+
+      // 5. Draw Particle Sparks
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.font = '10px monospace';
+        ctx.fillText(p.char, p.x, p.y);
+        ctx.restore();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

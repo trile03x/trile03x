@@ -1,0 +1,417 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 270" width="100%" height="100%">
+  <defs>
+    <!-- Background Space & Cyber Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#040813"/>
+      <stop offset="40%" stop-color="#081024"/>
+      <stop offset="80%" stop-color="#0b1733"/>
+      <stop offset="100%" stop-color="#03060d"/>
+    </linearGradient>
+
+    <!-- Metal Carapace Armor Gradients -->
+    <linearGradient id="metalDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <linearGradient id="metalPlate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="40%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00f3ff"/>
+    </linearGradient>
+
+    <linearGradient id="radarCone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#00ff88" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="glowIntense" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="2" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="glowSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    /* Continuous Biomechanical Walking Patrol Path */
+    @keyframes crawlSinuous {
+      0%   { transform: translate(45px, 130px) rotate(8deg); }
+      20%  { transform: translate(110px, 95px) rotate(-6deg); }
+      45%  { transform: translate(185px, 125px) rotate(14deg); }
+      70%  { transform: translate(125px, 165px) rotate(22deg); }
+      85%  { transform: translate(70px, 155px) rotate(-4deg); }
+      100% { transform: translate(45px, 130px) rotate(8deg); }
+    }
+
+    /* Hydraulic Leg Tripod Gait Steps */
+    @keyframes legGaitA {
+      0%, 100% { transform: rotate(-22deg) scaleY(0.95); }
+      50%      { transform: rotate(24deg) scaleY(1.05); }
+    }
+    @keyframes legGaitB {
+      0%, 100% { transform: rotate(24deg) scaleY(1.05); }
+      50%      { transform: rotate(-22deg) scaleY(0.95); }
+    }
+
+    /* Pincer Chelicerae Clamp Motion */
+    @keyframes pincerClampL {
+      0%, 100% { transform: rotate(-5deg); }
+      50%      { transform: rotate(18deg); }
+    }
+    @keyframes pincerClampR {
+      0%, 100% { transform: rotate(5deg); }
+      50%      { transform: rotate(-18deg); }
+    }
+
+    /* Core Arc Reactor Pulsing & Spinning */
+    @keyframes arcPulse {
+      0%, 100% { r: 5; opacity: 1; filter: drop-shadow(0 0 10px #00f3ff); }
+      50%      { r: 7.5; opacity: 0.6; filter: drop-shadow(0 0 4px #00f3ff); }
+    }
+
+    /* Radar Laser Sweep */
+    @keyframes radarScan {
+      0%   { transform: rotate(-28deg); opacity: 0.25; }
+      50%  { transform: rotate(32deg); opacity: 0.85; }
+      100% { transform: rotate(-28deg); opacity: 0.25; }
+    }
+
+    /* Text Fragment Suction Waves */
+    @keyframes ingest1 {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 0.9; }
+      100% { transform: translate(-80px, -35px) scale(0.15); opacity: 0; }
+    }
+    @keyframes ingest2 {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 0.9; }
+      100% { transform: translate(-95px, 25px) scale(0.15); opacity: 0; }
+    }
+    @keyframes ingest3 {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 0.9; }
+      100% { transform: translate(-70px, -15px) scale(0.1); opacity: 0; }
+    }
+
+    /* Terminal Blinking Cursor */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .mecha-bug {
+      animation: crawlSinuous 13s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .gait-a {
+      animation: legGaitA 0.38s ease-in-out infinite alternate;
+      transform-origin: 0 0;
+    }
+    .gait-b {
+      animation: legGaitB 0.38s ease-in-out infinite alternate;
+      transform-origin: 0 0;
+    }
+    .pincer-left {
+      animation: pincerClampL 1.2s ease-in-out infinite alternate;
+      transform-origin: 22px -5px;
+    }
+    .pincer-right {
+      animation: pincerClampR 1.2s ease-in-out infinite alternate;
+      transform-origin: 22px 5px;
+    }
+    .reactor-core {
+      animation: arcPulse 1.2s ease-in-out infinite;
+    }
+    .radar-beam {
+      animation: radarScan 2.4s ease-in-out infinite;
+      transform-origin: 22px 0px;
+    }
+    .tag-ingest-1 { animation: ingest1 2.9s linear infinite; }
+    .tag-ingest-2 { animation: ingest2 3.6s 0.9s linear infinite; }
+    .tag-ingest-3 { animation: ingest3 2.4s 1.6s linear infinite; }
+    .term-cursor { animation: blink 0.75s step-end infinite; }
+  </style>
+
+  <!-- Outer Cyber Deck Bevel Frame -->
+  <rect width="880" height="270" rx="16" fill="url(#bgGrad)" stroke="#00f3ff" stroke-opacity="0.35" stroke-width="1.8"/>
+
+  <!-- Isometric Circuit Background Pattern -->
+  <g opacity="0.08" stroke="#00f3ff" stroke-width="1" fill="none">
+    <path d="M 0 40 L 880 40 M 0 80 L 880 80 M 0 120 L 880 120 M 0 160 L 880 160 M 0 200 L 880 200 M 0 240 L 880 240"/>
+    <path d="M 40 0 L 40 270 M 100 0 L 100 270 M 160 0 L 160 270 M 220 0 L 220 270 M 280 0 L 280 270 M 340 0 L 340 270"/>
+  </g>
+
+  <!-- Glowing Motherboard Traces -->
+  <path d="M 25 35 L 140 35 L 175 60 L 320 60" stroke="#00f3ff" stroke-opacity="0.4" stroke-width="1.5" fill="none"/>
+  <circle cx="320" cy="60" r="3" fill="#00f3ff" filter="url(#glowIntense)"/>
+  
+  <path d="M 25 235 L 120 235 L 155 210 L 330 210" stroke="#00ff88" stroke-opacity="0.4" stroke-width="1.5" fill="none"/>
+  <circle cx="330" cy="210" r="3" fill="#00ff88" filter="url(#glowIntense)"/>
+
+  <!-- Hexagonal Tech Nodes -->
+  <polygon points="280,95 295,86 310,95 310,112 295,121 280,112" stroke="#00f3ff" stroke-opacity="0.3" fill="none" stroke-width="1.2"/>
+  <polygon points="305,165 320,156 335,165 335,182 320,191 305,182" stroke="#00ff88" stroke-opacity="0.25" fill="none" stroke-width="1.2"/>
+
+  <!-- ============================================================ -->
+  <!-- HIGH-TECH APEX MECHA BUG (SUPER DETAILED PROCEDURAL VECTOR) -->
+  <!-- ============================================================ -->
+  <g class="mecha-bug">
+    
+    <!-- Forward Radar Search Cone -->
+    <g class="radar-beam">
+      <polygon points="24,-2 115,-55 125,50" fill="url(#radarCone)" opacity="0.4"/>
+      <line x1="24" y1="0" x2="120" y2="0" stroke="#00f3ff" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.8"/>
+      <!-- Targeting crosshair -->
+      <circle cx="105" cy="0" r="6" stroke="#00ff88" stroke-width="1" fill="none" opacity="0.7"/>
+    </g>
+
+    <!-- 6 HYDRAULIC ARTICULATED LEGS WITH PISTONS & CLAWS -->
+
+    <!-- [1] FRONT-LEFT LEG (Gait A) -->
+    <g transform="translate(10, -10)">
+      <g class="gait-a">
+        <!-- Coxa Joint -->
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <!-- Upper Femur Segment with Piston -->
+        <path d="M 0 0 L 12 -20" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 12 -20" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Knee Servo Joint -->
+        <circle cx="12" cy="-20" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <!-- Lower Tibia Carbon Blade -->
+        <path d="M 12 -20 L 28 -32" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <!-- Magnetic Foot Contact -->
+        <circle cx="28" cy="-32" r="2.2" fill="#00ff88" filter="url(#glowIntense)"/>
+      </g>
+    </g>
+
+    <!-- [2] MID-LEFT LEG (Gait B) -->
+    <g transform="translate(-4, -13)">
+      <g class="gait-b">
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <path d="M 0 0 L -2 -22" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -2 -22" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="-2" cy="-22" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <path d="M -2 -22 L 10 -36" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="10" cy="-36" r="2.2" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [3] REAR-LEFT LEG (Gait A) -->
+    <g transform="translate(-18, -10)">
+      <g class="gait-a">
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <path d="M 0 0 L -14 -18" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -14 -18" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="-14" cy="-18" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <path d="M -14 -18 L -24 -32" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="-24" cy="-32" r="2.2" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [4] FRONT-RIGHT LEG (Gait B) -->
+    <g transform="translate(10, 10)">
+      <g class="gait-b">
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <path d="M 0 0 L 12 20" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L 12 20" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="20" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <path d="M 12 20 L 28 32" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="28" cy="32" r="2.2" fill="#00ff88" filter="url(#glowIntense)"/>
+      </g>
+    </g>
+
+    <!-- [5] MID-RIGHT LEG (Gait A) -->
+    <g transform="translate(-4, 13)">
+      <g class="gait-a">
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <path d="M 0 0 L -2 22" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -2 22" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="-2" cy="22" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <path d="M -2 22 L 10 36" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="10" cy="36" r="2.2" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [6] REAR-RIGHT LEG (Gait B) -->
+    <g transform="translate(-18, 10)">
+      <g class="gait-b">
+        <circle cx="0" cy="0" r="3.5" fill="#0f172a" stroke="#00f3ff" stroke-width="1.5"/>
+        <path d="M 0 0 L -14 18" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M 0 0 L -14 18" stroke="#00f3ff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="-14" cy="18" r="3" fill="#00f3ff" filter="url(#glowSoft)"/>
+        <path d="M -14 18 L -24 32" stroke="#00f3ff" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="-24" cy="32" r="2.2" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- CARAPACE EXOSKELETON & THORAX ARMOR -->
+
+    <!-- Rear Segment 3 (Tail Plate) -->
+    <path d="M -22 -6 Q -32 0 -22 6 L -16 8 Q -24 0 -16 -8 Z" fill="url(#metalDark)" stroke="#00f3ff" stroke-width="1.4"/>
+
+    <!-- Mid Segment 2 (Abdomen Main Shell) -->
+    <ellipse cx="-11" cy="0" rx="16" ry="12" fill="url(#metalPlate)" stroke="#00f3ff" stroke-width="1.8"/>
+    <!-- Ventilation Heat Sinks -->
+    <line x1="-22" y1="-5" x2="-22" y2="5" stroke="#00ff88" stroke-width="1" stroke-opacity="0.8"/>
+    <line x1="-18" y1="-8" x2="-18" y2="8" stroke="#00f3ff" stroke-width="1" stroke-opacity="0.8"/>
+
+    <!-- Central Arc Reactor Housing -->
+    <circle cx="-9" cy="0" r="8" fill="#020617" stroke="#00ff88" stroke-width="1.6"/>
+    <!-- Pulsing Cyan Plasma Core -->
+    <circle cx="-9" cy="0" r="5" fill="#00f3ff" class="reactor-core"/>
+    <circle cx="-9" cy="0" r="2" fill="#ffffff"/>
+
+    <!-- Thorax Armor Plate (Front Chest) -->
+    <polygon points="2,-13 14,-7 14,7 2,13 -6,11 -6,-11" fill="url(#metalPlate)" stroke="#00f3ff" stroke-width="2"/>
+    <path d="M 0 -8 L 10 0 L 0 8" stroke="#00ff88" stroke-width="1.4" fill="none"/>
+
+    <!-- Head & Sensory Visor Pod -->
+    <polygon points="12,-8 23,-3 23,3 12,8" fill="#090e17" stroke="#00ff88" stroke-width="1.8"/>
+    
+    <!-- Predator Multi-Lens Eyes (Neon Green & Ruby) -->
+    <circle cx="19" cy="-4" r="2.4" fill="#00ff88" filter="url(#glowIntense)"/>
+    <circle cx="19" cy="4" r="2.4" fill="#00ff88" filter="url(#glowIntense)"/>
+    <circle cx="22" cy="0" r="1.5" fill="#00f3ff" filter="url(#glowIntense)"/>
+
+    <!-- ARTICULATED HYDRAULIC PINCERS (MANDIBLES) -->
+    <g class="pincer-left">
+      <path d="M 22 -4 L 32 -10 L 36 -3" stroke="#00f3ff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="36" cy="-3" r="1.5" fill="#00ff88"/>
+    </g>
+    <g class="pincer-right">
+      <path d="M 22 4 L 32 10 L 36 3" stroke="#00f3ff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <circle cx="36" cy="3" r="1.5" fill="#00ff88"/>
+    </g>
+
+    <!-- Cyber Sensory Antennae -->
+    <path d="M 22 -4 Q 28 -14 36 -18" stroke="#00f3ff" stroke-width="1.4" fill="none"/>
+    <circle cx="36" cy="-18" r="1.8" fill="#00ffcc" filter="url(#glowSoft)"/>
+
+    <path d="M 22 4 Q 28 14 36 18" stroke="#00f3ff" stroke-width="1.4" fill="none"/>
+    <circle cx="36" cy="18" r="1.8" fill="#00ffcc" filter="url(#glowSoft)"/>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- FLOATING DATA PARTICLES (HARVESTING & INGESTION STREAMS)     -->
+  <!-- ============================================================ -->
+  <g transform="translate(260, 115)">
+    <g class="tag-ingest-1">
+      <rect x="0" y="0" width="72" height="20" rx="4" fill="#09182b" stroke="#00f3ff" stroke-width="1.2"/>
+      <circle cx="8" cy="10" r="2.5" fill="#00f3ff"/>
+      <text x="40" y="14" font-family="'Courier New', monospace" font-size="10.5" fill="#00f3ff" text-anchor="middle" font-weight="bold">Python3</text>
+    </g>
+  </g>
+
+  <g transform="translate(285, 175)">
+    <g class="tag-ingest-2">
+      <rect x="0" y="0" width="76" height="20" rx="4" fill="#08291a" stroke="#00ff88" stroke-width="1.2"/>
+      <circle cx="8" cy="10" r="2.5" fill="#00ff88"/>
+      <text x="42" y="14" font-family="'Courier New', monospace" font-size="10" fill="#00ff88" text-anchor="middle" font-weight="bold">AI_Bot</text>
+    </g>
+  </g>
+
+  <g transform="translate(235, 55)">
+    <g class="tag-ingest-3">
+      <rect x="0" y="0" width="80" height="20" rx="4" fill="#2d0a1b" stroke="#ff0055" stroke-width="1.2"/>
+      <circle cx="8" cy="10" r="2.5" fill="#ff0055"/>
+      <text x="44" y="14" font-family="'Courier New', monospace" font-size="10" fill="#ff3377" text-anchor="middle" font-weight="bold">#BugFixed</text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- RIGHT HUD TERMINAL: LE VAN TRI PROFILE DASHBOARD             -->
+  <!-- ============================================================ -->
+  <g transform="translate(390, 24)">
+    <!-- Terminal Outer Frame -->
+    <rect width="465" height="222" rx="12" fill="#060b17" fill-opacity="0.94" stroke="#00f3ff" stroke-opacity="0.4" stroke-width="1.5"/>
+    
+    <!-- Title Bar -->
+    <rect width="465" height="32" rx="12" fill="#0e172a"/>
+    <line x1="0" y1="32" x2="465" y2="32" stroke="#00f3ff" stroke-opacity="0.25" stroke-width="1.2"/>
+
+    <!-- Mac-style Window Controls -->
+    <circle cx="20" cy="16" r="4.5" fill="#ef4444"/>
+    <circle cx="36" cy="16" r="4.5" fill="#f59e0b"/>
+    <circle cx="52" cy="16" r="4.5" fill="#10b981"/>
+
+    <text x="74" y="20" font-family="'Courier New', monospace" font-size="11.5" fill="#94a3b8" font-weight="bold">
+      CYBER_TERMINAL // USER: trile03x
+    </text>
+
+    <!-- Status Beacon Pill -->
+    <rect x="360" y="8" width="90" height="17" rx="8.5" fill="#042f1a" stroke="#00ff88" stroke-width="1"/>
+    <circle cx="372" cy="16.5" r="3" fill="#00ff88" filter="url(#glowIntense)"/>
+    <text x="382" y="20.5" font-family="'Courier New', monospace" font-size="9.5" fill="#00ff88" font-weight="bold">ONLINE 100%</text>
+
+    <!-- Terminal Inner Text Stream -->
+    <g transform="translate(20, 56)" font-family="'Courier New', Consolas, monospace">
+      
+      <!-- User Identification -->
+      <text x="0" y="0" font-size="15" fill="#00f3ff" font-weight="bold" filter="url(#glowSoft)">
+        &gt; LE VAN TRI (@trile03x)
+      </text>
+
+      <text x="0" y="22" font-size="11.5" fill="#64748b">
+        &gt; Academy: <tspan fill="#f1f5f9" font-weight="bold">Duy Tan University (DTU)</tspan> | Da Nang
+      </text>
+
+      <!-- Tech Separator -->
+      <line x1="0" y1="34" x2="425" y2="34" stroke="#00f3ff" stroke-opacity="0.2" stroke-dasharray="4,4"/>
+
+      <!-- Protocol Activity -->
+      <text x="0" y="52" font-size="11.5" fill="#00ff88" font-weight="bold">
+        &gt; APEX_BUG_HARVESTER: <tspan fill="#e2e8f0">Scanning codebases &amp; repos...</tspan>
+      </text>
+
+      <!-- Data Stack Ingestion -->
+      <text x="0" y="74" font-size="11" fill="#7ba3c7">
+        &gt; HARVESTED STACK: 
+        <tspan fill="#00f3ff">[Python]</tspan> 
+        <tspan fill="#f59e0b">[HTML5/CSS3]</tspan> 
+        <tspan fill="#00ff88">[AI/Chatbot]</tspan>
+        <tspan fill="#c084fc">[MySQL]</tspan>
+      </text>
+
+      <!-- Quote -->
+      <text x="0" y="96" font-size="10.8" fill="#cbd5e1" font-style="italic">
+        "Once you choose hope, anything's possible."
+      </text>
+
+      <!-- Active Status & Typing Cursor -->
+      <text x="0" y="122" font-size="11.5" fill="#00f3ff">
+        &gt; STATUS: <tspan fill="#00ff88">Hunting bugs, commits &amp; building cool tech</tspan><tspan class="term-cursor" fill="#00f3ff">█</tspan>
+      </text>
+
+      <!-- Progress Matrix Bar -->
+      <g transform="translate(0, 138)">
+        <rect x="0" y="0" width="425" height="7" rx="3.5" fill="#0f172a"/>
+        <rect x="0" y="0" width="345" height="7" rx="3.5" fill="url(#neonCyan)"/>
+      </g>
+    </g>
+  </g>
+
+</svg>
