@@ -24,16 +24,16 @@
 
 <p align="center">
   <a href="https://github.com/trile03x" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-trile03x-00f3ff?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
   <a href="https://www.facebook.com/TriTechz" target="_blank">
-    <img src="https://img.shields.io/badge/Facebook-TriTechz-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
+    <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
   </a>
   <a href="https://www.linkedin.com/in/tritechz/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-tritechz-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   <a href="https://t.me/TRITECHZ" target="_blank">
-    <img src="https://img.shields.io/badge/Telegram-@TRITECHZ-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" />
+    <img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" />
   </a>
 </p>
 
