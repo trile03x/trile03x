@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" width="920" height="320">
+  <defs>
+    <!-- Premium Stealth Cyber Background -->
+    <linearGradient id="stealthBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030712"/>
+      <stop offset="50%" stop-color="#071024"/>
+      <stop offset="100%" stop-color="#02040a"/>
+    </linearGradient>
+
+    <!-- Dark Titanium Carbon Plating -->
+    <linearGradient id="carbonPlate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="35%" stop-color="#1e293b"/>
+      <stop offset="80%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Arc Reactor Core Glow -->
+    <radialGradient id="cleanCoreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#00f3ff"/>
+      <stop offset="70%" stop-color="#0066cc" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Clean Radar Scan Cone -->
+    <linearGradient id="cleanRadar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="45%" stop-color="#00ff88" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Motherboard Circuit Trace -->
+    <linearGradient id="cleanTrace" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#00f3ff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#00ff88" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* <![CDATA[ */
+    /* Scripted Locomotion: Bug actually crawls TO EACH TEXT and eats it */
+    @keyframes crawlAndHunt {
+      0%   { transform: translate(120px, 160px) rotate(0deg); }
+      14%  { transform: translate(320px, 95px) rotate(-16deg); }
+      22%  { transform: translate(415px, 85px) rotate(-6deg); }   /* EATS TOKEN 1 */
+      30%  { transform: translate(450px, 110px) rotate(32deg); }
+      45%  { transform: translate(530px, 155px) rotate(22deg); }  /* EATS TOKEN 2 */
+      56%  { transform: translate(510px, 195px) rotate(68deg); }
+      68%  { transform: translate(435px, 240px) rotate(115deg); } /* EATS TOKEN 3 */
+      80%  { transform: translate(280px, 220px) rotate(175deg); } /* Patrolling back */
+      92%  { transform: translate(150px, 185px) rotate(210deg); }
+      100% { transform: translate(120px, 160px) rotate(360deg); }
+    }
+
+    /* Hydraulic Mechanical Gait (Tripod Step Alternation) */
+    @keyframes gaitStepA {
+      0%, 100% { transform: rotate(-24deg); }
+      50%      { transform: rotate(26deg); }
+    }
+    @keyframes gaitStepB {
+      0%, 100% { transform: rotate(26deg); }
+      50%      { transform: rotate(-24deg); }
+    }
+
+    /* Pincer Mandibles Snap & Feed */
+    @keyframes mandibleFeedL {
+      0%, 18%, 26%, 42%, 50%, 65%, 74%, 100% { transform: rotate(-6deg); }
+      22%, 46%, 70% { transform: rotate(24deg); } /* Snaps when reaching text */
+    }
+    @keyframes mandibleFeedR {
+      0%, 18%, 26%, 42%, 50%, 65%, 74%, 100% { transform: rotate(6deg); }
+      22%, 46%, 70% { transform: rotate(-24deg); }
+    }
+
+    /* Arc Reactor Pulse */
+    @keyframes coreGlowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50%      { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    /* Radar Scanner Sweep */
+    @keyframes radarScanPulse {
+      0%   { transform: rotate(-28deg); opacity: 0.3; }
+      50%  { transform: rotate(32deg); opacity: 0.9; }
+      100% { transform: rotate(-28deg); opacity: 0.3; }
+    }
+
+    /* Token 1: #BugFixed - Eaten at 22% */
+    @keyframes tokenLife1 {
+      0%, 16%  { opacity: 1; transform: scale(1); }
+      22%      { opacity: 0.8; transform: scale(1.15); }
+      26%      { opacity: 0; transform: scale(0.1); }
+      88%      { opacity: 0; transform: scale(0.1); }
+      96%, 100%{ opacity: 1; transform: scale(1); }
+    }
+
+    /* Token 2: Python3 - Eaten at 45% */
+    @keyframes tokenLife2 {
+      0%, 38%  { opacity: 1; transform: scale(1); }
+      45%      { opacity: 0.8; transform: scale(1.15); }
+      49%      { opacity: 0; transform: scale(0.1); }
+      90%      { opacity: 0; transform: scale(0.1); }
+      97%, 100%{ opacity: 1; transform: scale(1); }
+    }
+
+    /* Token 3: TriTechz - Eaten at 68% */
+    @keyframes tokenLife3 {
+      0%, 62%  { opacity: 1; transform: scale(1); }
+      68%      { opacity: 0.8; transform: scale(1.15); }
+      72%      { opacity: 0; transform: scale(0.1); }
+      92%      { opacity: 0; transform: scale(0.1); }
+      98%, 100%{ opacity: 1; transform: scale(1); }
+    }
+
+    /* Laser Tether Eaten Sparks */
+    @keyframes tetherSpark {
+      0%, 20%, 26%, 43%, 49%, 66%, 72%, 100% { opacity: 0; }
+      22%, 46%, 70% { opacity: 0.9; }
+    }
+
+    .bug-hunter {
+      animation: crawlAndHunt 16s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .tripod-1 {
+      animation: gaitStepA 0.32s ease-in-out infinite alternate;
+      transform-origin: 0 0;
+    }
+    .tripod-2 {
+      animation: gaitStepB 0.32s ease-in-out infinite alternate;
+      transform-origin: 0 0;
+    }
+    .jaw-feed-l {
+      animation: mandibleFeedL 16s ease-in-out infinite;
+      transform-origin: 36px -10px;
+    }
+    .jaw-feed-r {
+      animation: mandibleFeedR 16s ease-in-out infinite;
+      transform-origin: 36px 10px;
+    }
+    .reactor-core-anim {
+      animation: coreGlowPulse 1.2s ease-in-out infinite;
+      transform-origin: -14px 0px;
+    }
+    .radar-cone-anim {
+      animation: radarScanPulse 2.4s ease-in-out infinite;
+      transform-origin: 36px 0px;
+    }
+    .t-token-1 { animation: tokenLife1 16s ease-in-out infinite; transform-origin: center; }
+    .t-token-2 { animation: tokenLife2 16s ease-in-out infinite; transform-origin: center; }
+    .t-token-3 { animation: tokenLife3 16s ease-in-out infinite; transform-origin: center; }
+    .tether-laser { animation: tetherSpark 16s ease-in-out infinite; }
+    /* ]]> */
+  </style>
+
+  <!-- Clean Stealth Frame -->
+  <rect width="920" height="320" rx="16" fill="url(#stealthBg)" stroke="#00f3ff" stroke-opacity="0.4" stroke-width="1.8"/>
+
+  <!-- Tech Grid Background -->
+  <g opacity="0.07" stroke="#00f3ff" stroke-width="1">
+    <line x1="0" y1="40" x2="920" y2="40"/><line x1="0" y1="80" x2="920" y2="80"/>
+    <line x1="0" y1="120" x2="920" y2="120"/><line x1="0" y1="160" x2="920" y2="160"/>
+    <line x1="0" y1="200" x2="920" y2="200"/><line x1="0" y1="240" x2="920" y2="240"/>
+    <line x1="0" y1="280" x2="920" y2="280"/>
+    <line x1="80" y1="0" x2="80" y2="320"/><line x1="180" y1="0" x2="180" y2="320"/>
+    <line x1="280" y1="0" x2="280" y2="320"/><line x1="380" y1="0" x2="380" y2="320"/>
+    <line x1="480" y1="0" x2="480" y2="320"/><line x1="580" y1="0" x2="580" y2="320"/>
+    <line x1="680" y1="0" x2="680" y2="320"/><line x1="780" y1="0" x2="780" y2="320"/>
+    <line x1="880" y1="0" x2="880" y2="320"/>
+  </g>
+
+  <!-- Clean Cyber Traces -->
+  <path d="M 30 35 L 240 35 L 280 65 L 560 65" stroke="url(#cleanTrace)" stroke-width="1.8" fill="none"/>
+  <circle cx="560" cy="65" r="3.5" fill="#00f3ff"/>
+  <path d="M 890 285 L 680 285 L 640 255 L 360 255" stroke="url(#cleanTrace)" stroke-width="1.8" fill="none"/>
+  <circle cx="360" cy="255" r="3.5" fill="#00ff88"/>
+
+  <!-- Minimal Cyber HUD Label -->
+  <g font-family="'Courier New', monospace" font-size="11.5" fill="#00f3ff" opacity="0.85">
+    <text x="32" y="24" font-weight="bold">◈ CYBER_SENTINEL // ACTIVE_DATA_HARVEST</text>
+    <text x="730" y="304" font-weight="bold">AUTONOMOUS_PATROL ◈</text>
+  </g>
+
+  <!-- ======================================================= -->
+  <!-- 3 TARGET DATA TOKENS WAITING TO BE HARVESTED BY BUG     -->
+  <!-- ======================================================= -->
+  
+  <!-- Token 1: #BugFixed at (450, 85) -->
+  <g transform="translate(450, 85)" class="t-token-1">
+    <rect x="-55" y="-14" width="110" height="28" rx="6" fill="#1e0a1a" stroke="#ff0077" stroke-width="1.6"/>
+    <circle cx="-42" cy="0" r="3.5" fill="#ff0077"/>
+    <text x="6" y="4" font-family="'Courier New', monospace" font-size="12.5" fill="#ff4d94" text-anchor="middle" font-weight="bold">#BugFixed</text>
+  </g>
+
+  <!-- Token 2: Python3 at (580, 160) -->
+  <g transform="translate(580, 160)" class="t-token-2">
+    <rect x="-55" y="-14" width="110" height="28" rx="6" fill="#06182c" stroke="#00f3ff" stroke-width="1.6"/>
+    <circle cx="-42" cy="0" r="3.5" fill="#00f3ff"/>
+    <text x="6" y="4" font-family="'Courier New', monospace" font-size="12.5" fill="#00f3ff" text-anchor="middle" font-weight="bold">Python3</text>
+  </g>
+
+  <!-- Token 3: TriTechz at (480, 245) -->
+  <g transform="translate(480, 245)" class="t-token-3">
+    <rect x="-58" y="-14" width="116" height="28" rx="6" fill="#052818" stroke="#00ff88" stroke-width="1.6"/>
+    <circle cx="-45" cy="0" r="3.5" fill="#00ff88"/>
+    <text x="6" y="4" font-family="'Courier New', monospace" font-size="12.5" fill="#00ff88" text-anchor="middle" font-weight="bold">TriTechz</text>
+  </g>
+
+  <!-- ======================================================= -->
+  <!-- THE BUG: SLEEK, POWERFUL, NO TACKY FLAMES               -->
+  <!-- ======================================================= -->
+  <g class="bug-hunter">
+
+    <!-- Radar Laser Sweep -->
+    <g class="radar-cone-anim">
+      <polygon points="36,-2 180,-75 195,70" fill="url(#cleanRadar)" opacity="0.45"/>
+      <line x1="36" y1="0" x2="185" y2="0" stroke="#00f3ff" stroke-width="1.6" stroke-dasharray="5,3" opacity="0.9"/>
+      <circle cx="160" cy="0" r="7" stroke="#00ff88" stroke-width="1.4" fill="none"/>
+      <circle cx="160" cy="0" r="2.5" fill="#00ff88"/>
+    </g>
+
+    <!-- Laser Ingestion Tether Line (Fires when eating text) -->
+    <g class="tether-laser">
+      <line x1="38" y1="0" x2="70" y2="0" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="70" cy="0" r="5" fill="#00ff88"/>
+    </g>
+
+    <!-- 6 ARTICULATED HYDRAULIC MECHANICAL LEGS -->
+
+    <!-- [1] FRONT-LEFT (Tripod 1) -->
+    <g transform="translate(16, -16)">
+      <g class="tripod-1">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L 22 -34" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L 22 -34" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="22" cy="-34" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M 22 -34 L 52 -52" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="52" cy="-52" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [2] MID-LEFT (Tripod 2) -->
+    <g transform="translate(-8, -20)">
+      <g class="tripod-2">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L -6 -36" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L -6 -36" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-6" cy="-36" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M -6 -36 L 16 -60" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="16" cy="-60" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [3] REAR-LEFT (Tripod 1) -->
+    <g transform="translate(-30, -16)">
+      <g class="tripod-1">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L -24 -30" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L -24 -30" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-24" cy="-30" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M -24 -30 L -44 -52" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="-44" cy="-52" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [4] FRONT-RIGHT (Tripod 2) -->
+    <g transform="translate(16, 16)">
+      <g class="tripod-2">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L 22 34" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L 22 34" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="22" cy="34" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M 22 34 L 52 52" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="52" cy="52" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [5] MID-RIGHT (Tripod 1) -->
+    <g transform="translate(-8, 20)">
+      <g class="tripod-1">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L -6 36" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L -6 36" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-6" cy="36" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M -6 36 L 16 60" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="16" cy="60" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- [6] REAR-RIGHT (Tripod 2) -->
+    <g transform="translate(-30, 16)">
+      <g class="tripod-2">
+        <circle cx="0" cy="0" r="6" fill="#070e1c" stroke="#00f3ff" stroke-width="2.2"/>
+        <path d="M 0 0 L -24 30" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 0 0 L -24 30" stroke="#00f3ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="-24" cy="30" r="5" fill="#070e1c" stroke="#00ff88" stroke-width="2"/>
+        <path d="M -24 30 L -44 52" stroke="#00f3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="-44" cy="52" r="3.5" fill="#00ff88"/>
+      </g>
+    </g>
+
+    <!-- SLEEK REAR CHITIN SHELL (NO FLAMES - CLEAN METALLIC TAIL) -->
+    <path d="M -34 -10 Q -48 0 -34 10 L -24 12 Q -38 0 -24 -12 Z" fill="#0c1628" stroke="#00f3ff" stroke-width="1.8"/>
+    <line x1="-40" y1="-5" x2="-40" y2="5" stroke="#00ff88" stroke-width="1.8"/>
+
+    <!-- ABDOMEN MAIN TITANIUM ARMOR CARAPACE -->
+    <ellipse cx="-16" cy="0" rx="27" ry="19" fill="url(#carbonPlate)" stroke="#00f3ff" stroke-width="2.4"/>
+    <line x1="-30" y1="-9" x2="-30" y2="9" stroke="#00ff88" stroke-width="1.6"/>
+    <line x1="-24" y1="-13" x2="-24" y2="13" stroke="#00f3ff" stroke-width="1.6"/>
+
+    <!-- ARC REACTOR CORE (CLEAN HIGH-TECH GLOW) -->
+    <circle cx="-13" cy="0" r="14" fill="#020617" stroke="#00ff88" stroke-width="2.4"/>
+    <circle cx="-13" cy="0" r="10" fill="url(#cleanCoreGlow)" class="reactor-core-anim"/>
+    <circle cx="-13" cy="0" r="3.5" fill="#ffffff"/>
+
+    <!-- THORAX MECHA SHOULDER PLATING -->
+    <polygon points="6,-20 22,-11 22,11 6,20 -10,16 -10,-16" fill="url(#carbonPlate)" stroke="#00f3ff" stroke-width="2.6"/>
+    <path d="M 2 -12 L 16 0 L 2 12" stroke="#00ff88" stroke-width="2" fill="none"/>
+
+    <!-- HEAD SENSORY VISOR -->
+    <polygon points="20,-12 36,-5 36,5 20,12" fill="#040914" stroke="#00ff88" stroke-width="2.4"/>
+
+    <!-- DUAL PREDATOR SENSOR EYES -->
+    <circle cx="30" cy="-5" r="3.5" fill="#00ff88"/>
+    <circle cx="30" cy="5" r="3.5" fill="#00ff88"/>
+    <circle cx="34" cy="0" r="2.2" fill="#00f3ff"/>
+
+    <!-- ARTICULATED MANDIBLES / PINCERS -->
+    <g class="jaw-feed-l">
+      <path d="M 34 -7 L 50 -16 L 58 -4" stroke="#00f3ff" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+      <circle cx="58" cy="-4" r="2.2" fill="#00ff88"/>
+    </g>
+    <g class="jaw-feed-r">
+      <path d="M 34 7 L 50 16 L 58 4" stroke="#00f3ff" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+      <circle cx="58" cy="4" r="2.2" fill="#00ff88"/>
+    </g>
+
+    <!-- SENSORY ANTENNAE -->
+    <path d="M 34 -5 Q 46 -22 60 -25" stroke="#00f3ff" stroke-width="1.8" fill="none"/>
+    <circle cx="60" cy="-25" r="2.5" fill="#00ffcc"/>
+
+    <path d="M 34 5 Q 46 22 60 25" stroke="#00f3ff" stroke-width="1.8" fill="none"/>
+    <circle cx="60" cy="25" r="2.5" fill="#00ffcc"/>
+  </g>
+
+</svg>

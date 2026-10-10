@@ -4,10 +4,10 @@
 ### 🚀 Tech Explorer | Bug Hunter | Duy Tan University
 
 <!-- ============================================== -->
-<!-- APEX CYBER TITAN BUG (HERO ANIMATION)          -->
+<!-- CYBER STEALTH BUG (HUNTING & HARVESTING TEXT) -->
 <!-- ============================================== -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_titan_bug.svg" alt="Apex Cyber Titan Bug" width="100%" />
+  <img src="https://raw.githubusercontent.com/trile03x/trile03x/main/cyber_stealth_bug.svg" alt="Cyber Stealth Bug Sentinel" width="100%" />
 </p>
 
 > *"Once you choose hope, anything's possible."*
